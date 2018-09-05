@@ -1,0 +1,13 @@
+{
+    "apps": [
+            {
+            "name": "99nearme",
+            "script": "www",
+            "cwd": "/opt/99nearme/bin",
+    "env": {
+                    "ENV": "prod",
+                    "APP_ENVIRONMENT": "production",
+                    "PORT": "80"
+            }
+            }]
+}
