@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST}  !^www\.99nearme\.com$ [NC]
+RewriteRule ^(.*) https://www.99nearme.com/$1 [L,R]
