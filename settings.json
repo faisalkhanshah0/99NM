@@ -7,7 +7,7 @@
     "env": {
                     "ENV": "prod",
                     "APP_ENVIRONMENT": "production",
-                    "PORT": "80"
+                    "PORT": "3000"
             }
             }]
 }
