@@ -1,12 +1,3 @@
-# Rule 1
-User-agent: Googlebot
-Disallow: /js/
-Disallow: /stylesheets/
-Disallow: /fonts/
-Disallow: /health.html
-Allow: /
-
-# Rule 2
 User-agent: *
 Disallow: /js/
 Disallow: /stylesheets/
@@ -14,5 +5,4 @@ Disallow: /fonts/
 Disallow: /health.html
 Allow: /
 
-# Sitemap: https://99nearme.com/sitemap.xml
-Sitemap: http://www.99nearme.com/sitemap.xml
+Sitemap: https://99nearme.com/sitemap.xml
