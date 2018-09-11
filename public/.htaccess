@@ -1,3 +1,12 @@
-RewriteEngine On
-RewriteCond %{HTTP_HOST}  !^www\.99nearme\.com$ [NC]
-RewriteRule ^(.*) https://www.99nearme.com/$1 [L,R]
+<ifModule mod_rewrite.c>
+RewriteEngine on
+
+# Redirect to domain with www.
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule .* http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+# Same for HTTPS:
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</ifModule>
