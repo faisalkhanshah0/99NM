@@ -1,4 +1,3 @@
-<ifModule mod_rewrite.c>
 RewriteEngine on
 
 # Redirect to domain with www.
@@ -9,4 +8,3 @@ RewriteRule .* http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 RewriteCond %{HTTPS} on
 RewriteCond %{HTTP_HOST} !^www\. [NC]
 RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-</ifModule>
