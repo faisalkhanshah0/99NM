@@ -1,0 +1,117 @@
+{{> header}}
+    <!-- content section start-->
+      <section>
+      <div class="wrapper">
+        <!-- Categories Homepage Section Start -->
+        <section id="categories-homepage">
+          <div class="container">
+            <div class="row">
+                <h3 class="section-title mb10 ml10">Post An Ad</h3>
+                <div class="col-md-9 col-sm-12 col-xs-12  well">
+                        <h5 class="extra-subheading mb10">Create account and Add your Business / Services / Ad</h5>
+                        
+                        <form>
+                          <h5 class="extra-subheading mt10">Account Detail :-</h5>
+                          <div class="form-row">
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="fullname">Full Name</label>
+                              <input type="text" class="form-control" id="inputfullname" placeholder="Your Full Name">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputmobile">Mobile</label>
+                              <input type="tel" class="form-control" id="inputmobile" placeholder="Mobile">
+                            </div>
+                          </div>
+                          <div class="form-row mb10">
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputemail">Email</label>
+                              <input type="email" class="form-control" id="inputemail" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputpassword">New Password</label>
+                              <input type="password" class="form-control" id="inputpassword" placeholder="New Password">
+                            </div>
+                          </div>
+                          <h5 class="extra-subheading mt10">Business / Services / Shop / Ad Detail :-</h5>
+                          <div class="form-row mb10">
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputbusinessname">Business / Service / Shop Name</label>
+                              <input type="text" class="form-control" id="inputbusinessname" placeholder="Enter Business / Service / Shop Name">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputcategory">Business Category</label>
+                              <input type="text" class="form-control" id="inputcategory" placeholder="Enter Category">
+                            </div>
+                          </div>
+                          <div class="form-row mt10">
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputAddress">Address</label>
+                              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputAddress2">Address 2</label>
+                              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                            </div>
+                          </div>
+                          <div class="form-row mb10">
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputcity">City</label>
+                              <input type="text" class="form-control" id="inputcity" placeholder="Enter City">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputbusinessmobile">Business Mobile / Phone</label>
+                              <input type="text" class="form-control" id="inputbusinessmobile" placeholder="Enter Mobile No. / Phone No.">
+                            </div>
+                          </div>
+                          <div class="form-row mt10">
+                            <div class="form-group col-md-12">
+                              <label for="inputbusinessdescription">Description</label>
+                              <textarea id="inputbusinessdescription" placeholder="Business Description" class="form-control" rows="3"></textarea>
+                            </div>
+                          </div>
+
+                          <div class="form-row mb10">
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputpincode">Area Pin Code</label>
+                              <input type="text" class="form-control" id="inputpincode" placeholder="Enter Area Pincode">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputbusinessprofile">Business Profile (Shop / Service / Company / Others)</label>
+                              <select id="inputbusinessprofile" class="form-control">
+                                <option selected>Choose...</option>
+                                <option value="1">Shop</option>
+                                <option value="2">Service</option>
+                                <option value="3">Company</option>
+                                <option value="4">Others</option>
+                              </select>  
+                            </div>
+                          </div>
+                          <div class="form-row mt10 mb10">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                              <div class="g-recaptcha" data-sitekey="6LcMbnAUAAAAALj2K6R7reHUXl7CbMuU2M64lceI"></div>
+                            </div>
+                          </div>
+                          <div class="form-row mt10">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <button type="submit" class="btn btn-primary">Save &amp; Post an Ad</button>
+                          
+                            </div>
+                          </div>
+
+                        </form>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                  {{> sidebar}}
+                </div>
+            </div>
+            </div>
+      </div>
+      </section>
+      <!-- Content Section End -->
+      
+
+
+    </div>
+
+  {{> counter}}
+  {{> footer}}
