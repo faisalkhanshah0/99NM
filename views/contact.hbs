@@ -6,24 +6,32 @@
         <section id="categories-homepage">
           <div class="container">
             <div class="row">
-                <h3 class="section-title mb10 ml10">Contact Us</h3>
+                <h3 class="section-title mb10 ml10 showbold">Contact Us</h3>
                 <div class="col-md-8 col-sm-12 col-xs-12  well">
-                    <h5 class="extra-subheading">If you would like to help us with a suggestion, feedback Please tell us here.</h5>
-                        <form>
+                    <h5 class="extra-subheading thanks">If you would like to help us with a suggestion, feedback Please tell us here.</h5>
+                          <div id="successbox" class="alert alert-success alert-dismissible fade in">
+                            <a href="#" class="close messageboxclose" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success :</strong><p id="success"></p>
+                          </div>                        
+                          <div id="errorbox" class="alert alert-danger alert-dismissible fade in">
+                            <a href="#" class="close messageboxclose" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error :</strong><p id="error"></p>
+                          </div>
+                        <form action="/contact" onsubmit="return validatecontact()" id="contactform" method="GET">
                           <div class="form-row">
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
                               <label for="fullname">Full Name</label>
-                              <input type="text" class="form-control" id="inputfullname" placeholder="Full Name">
+                              <input type="text" class="form-control" required id="inputfullname" placeholder="Full Name">
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
                               <label for="inputmobile">Mobile</label>
-                              <input type="tel" class="form-control" id="inputmobile" placeholder="Mobile">
+                              <input type="number" class="form-control" required id="inputmobile" placeholder="Mobile">
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-12">
                               <label for="inputemail">Email</label>
-                              <input type="email" class="form-control" id="inputemail" placeholder="Email">
+                              <input type="email" class="form-control" required id="inputemail" placeholder="Email">
                             </div>
                           </div>
                           <div class="form-row">
@@ -35,12 +43,13 @@
                           </div>
                           <div class="form-row mt10 mb10">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                              <div class="g-recaptcha" data-sitekey="6LcMbnAUAAAAALj2K6R7reHUXl7CbMuU2M64lceI"></div>
+                              {{!-- <div class="g-recaptcha" data-sitekey="6LcMbnAUAAAAALj2K6R7reHUXl7CbMuU2M64lceI"></div> --}}
                             </div>
                           </div>
                           <div class="form-row mt10 mb10">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
                               <button type="submit" class="btn btn-primary">Submit</button>
+                              {{!-- <input type="submit" value="submit" name="submit"/> --}}
                             </div>
                           </div>
                           
@@ -55,9 +64,51 @@
       </section>
       <!-- Content Section End -->
       
+    <script>
+      console.log('excuted');
+      $('#errorbox').hide();
+      $('#successbox').hide();
+      function validatecontact(){
+        let dataobj = {
+        fullname: $('#inputfullname').val().trim(),
+        mobile: $('#inputmobile').val().trim(),
+        email: $('#inputemail').val().trim(),
+        message: $('#inputmessage').val().trim()
+        };
+        if(dataobj.fullname && dataobj.mobile && dataobj.email && dataobj.message){
 
+          $.post("/api/contact/query", dataobj, function(result){
+              console.log(result);
+              if(result.result == 1)
+              {
+              $('#errorbox').hide();
+              $('#successbox').show();
+              $('#success').html(`We have taken your data. please wait, we will contact you soon. <br/> Reference No : <span class="showbold">REF${result.id}</span>.<br/>Thanks <br/>99nearme`);
+              $('#contactform').hide();
+              $('.thanks').html('Thanks for contacting us.');
+              }
+              else{
+                $('#successbox').hide();
+                $('#errorbox').show();
+                $('#error').html('Something went wrong. please check your values and try it again. Thanks 99nearme');
+                
+              }
+          });
+          return false;
+        }
+        else{
+          $('#successbox').hide();
+          $('#errorbox').show();
+          $('#error').html('Something went wrong. please check your values and try it again. Thanks 99nearme');
+          return false;
+        }
+
+        
+      }
+    </script>
 
     </div>
 
-  {{> counter}}
+  {{!-- {{> counter}} --}}
   {{> footer}}
+

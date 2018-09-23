@@ -10,7 +10,7 @@
             <!-- Start Search box -->
             <div class="row search-bar">
               <div class="advanced-search">
-                <form class="search-form" method="get">
+                {{!-- <form class="search-form" method="get"> --}}
                   {{!-- <div class="col-md-3 col-sm-6 search-col">
                     <div class="input-group-addon search-category-container">
                       <label class="styled-select">
@@ -46,40 +46,42 @@
 
                   </div> --}}
                   <div class="col-md-3 col-sm-6 search-col">
-                    <input class="form-control keyword" name="location" value="" placeholder="Enter Location" type="text">
+                    <input class="form-control keyword" autocomplete="on" id="location" name="location" value="" placeholder="Enter Location" type="text">
                     <i class="fa fa-map-marker fa-5x"></i>
                   </div>
                   <div class="col-md-6 col-sm-6 search-col">
-                    <input class="form-control keyword" name="keyword" value="" placeholder="Search what you are looking for ?" type="text">
+                    <input class="form-control keyword" autocomplete="off" required id="keyword" name="keyword" value="" placeholder="Search what you are looking for ?" type="text">
                     <i class="fa fa-search"></i>
                   </div>
                   <div class="col-md-3 col-sm-6 search-col">
-                    <button class="btn btn-common btn-search btn-block"><strong>Search</strong></button>
+                    <button onclick="homeformsubmit()" class="btn btn-common btn-search btn-block"><strong>Search</strong></button>
                   </div>
-                </form>
+                {{!-- </form> --}}
               </div>
             </div>
             <div class="row mt10">
               <div class="col-md-12">
-                  <button class="btn btn-primary btn-sm btn-round">Delhi</button>
+                  <button value="delhi" class="locationsbutton btn btn-primary btn-sm btn-round">Delhi</button>
               
-                  <button class="btn btn-primary btn-sm btn-round">Noida</button>
+                  <button value="noida" class="locationsbutton btn btn-primary btn-sm btn-round">Noida</button>
               
-                  <button class="btn btn-primary btn-sm btn-round">Gurugram</button>
+                  <button value="gurgaon" class="locationsbutton btn btn-primary btn-sm btn-round">Gurgaon</button>
+
+                  <button value="bangalore" class="locationsbutton btn btn-primary btn-sm btn-round">Bangalore</button>
               
-                  <button class="btn btn-primary btn-sm btn-round">Pune</button>
+                  <button value="pune" class="locationsbutton btn btn-primary btn-sm btn-round">Pune</button>
               
-                  <button class="btn btn-primary btn-sm btn-round">Chennai</button>
+                  <button value="chennai" class="locationsbutton btn btn-primary btn-sm btn-round">Chennai</button>
               
-                  <button class="btn btn-primary btn-sm btn-round">Chandigarh</button>
+                  <button value="chandigarh" class="locationsbutton btn btn-primary btn-sm btn-round">Chandigarh</button>
               
-                  <button class="btn btn-primary btn-sm btn-round">Ahmedabad</button>
+                  <button value="ahmedabad" class="locationsbutton btn btn-primary btn-sm btn-round">Ahmedabad</button>
               
-                  <button class="btn btn-primary btn-sm btn-round">Kolkata</button>
+                  <button value="kolkata" class="locationsbutton btn btn-primary btn-sm btn-round">Kolkata</button>
               
-                  <button class="btn btn-primary btn-sm btn-round">Mumbai</button>
+                  <button value="mumbai" class="locationsbutton btn btn-primary btn-sm btn-round">Mumbai</button>
               
-                  <button class="btn btn-primary btn-sm btn-round">Jaipur</button>
+                  <button value="jaipur" class="locationsbutton btn btn-primary btn-sm btn-round">Jaipur</button>
               </div>
             </div>
             <div class="row">
@@ -102,55 +104,35 @@
               <div class="col-md-3 col-sm-6 mt10">
                 <div class="panel-group">
                   <div class="panel panel-primary">
-                    <div class="panel-heading text-center"><a href="#" class="white"> <i class="fa fa-cutlery fa-2x"></i><span class="ml10">Restaurants</span></a></div>
+                    <div class="panel-heading text-center"><a href="/best/restaurants" class="white"> <i class="fa fa-cutlery fa-2x"></i><span class="ml10">Restaurants</span></a></div>
                     <div class="panel-body">
                       <div class="categories-list">
                     <ul>
+                      {{#each data.restaurant}}
                       <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
+                        <a href="{{url}}">
+                          <i class="fa fa-cutlery"></i>
+                          {{keyword}} <span class="category-counter"></span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
+                      {{/each}}
                       </ul>
                       </div>
                     </div>
                   </div>
                   <div class="panel panel-success">
-                    <div class="panel-heading  text-center"><a href="#" class="white"> <i class="fa fa-bolt fa-2x"></i><span class="ml10">Electronics</span></a></div>
+                    <div class="panel-heading  text-center"><a href="/best/electronics" class="white"> <i class="fa fa-bolt fa-2x"></i><span class="ml10">Electronics</span></a></div>
                     <div class="panel-body">
                       <div class="categories-list">
                     <ul>
+                      {{#each data.electronics}}
                       <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
+                        <a href="{{url}}">
+                          <i class="fa fa-bolt"></i>
+                          {{keyword}} <span class="category-counter"></span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
+                      {{/each}}
                       </ul>
                       </div>
                     </div>
@@ -160,55 +142,35 @@
               <div class="col-md-3 col-sm-6 mt10">
                 <div class="panel-group">
                   <div class="panel panel-success">
-                    <div class="panel-heading  text-center"><a href="#" class="white"> <i class="fa fa-wrench fa-2x"></i><span class="ml10">Services</span></a></div>
+                    <div class="panel-heading  text-center"><a href="/best/services" class="white"> <i class="fa fa-wrench fa-2x"></i><span class="ml10">Services</span></a></div>
                     <div class="panel-body">
                       <div class="categories-list">
                     <ul>
+                      {{#each data.service}}
                       <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
+                        <a href="{{url}}">
+                          <i class="fa fa-wrench"></i>
+                          {{keyword}} <span class="category-counter"></span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
+                      {{/each}}
                       </ul>
                       </div>
                     </div>
                   </div>
                   <div class="panel panel-primary">
-                    <div class="panel-heading  text-center"><a href="#" class="white"> <i class="fa fa-shopping-bag fa-2x"></i><span class="ml10">Shopping</span></a></div>
+                    <div class="panel-heading  text-center"><a href="/best/shopping" class="white"> <i class="fa fa-shopping-bag fa-2x"></i><span class="ml10">Shopping</span></a></div>
                     <div class="panel-body">
                       <div class="categories-list">
                     <ul>
+                      {{#each data.shopping}}
                       <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
+                        <a href="{{url}}">
+                          <i class="fa fa-shopping-bag"></i>
+                          {{keyword}} <span class="category-counter"></span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
+                      {{/each}}
                       </ul>
                       </div>
                     </div>
@@ -218,55 +180,35 @@
               <div class="col-md-3 col-sm-6 mt10">
               <div class="panel-group">
                 <div class="panel panel-primary">
-                  <div class="panel-heading  text-center"><a href="#" class="white"> <i class="fa fa-black-tie fa-2x"></i><span class="ml10">Jobs</span></a></div>
+                  <div class="panel-heading  text-center"><a href="/best/jobs" class="white"> <i class="fa fa-black-tie fa-2x"></i><span class="ml10">Jobs</span></a></div>
                   <div class="panel-body">
                     <div class="categories-list">
                     <ul>
+                      {{#each data.jobs}}
                       <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
+                        <a href="{{url}}">
+                          <i class="fa fa-black-tie"></i>
+                          {{keyword}} <span class="category-counter"></span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
+                      {{/each}}
                       </ul>
                       </div>
                   </div>
                 </div>
                 <div class="panel panel-success">
-                  <div class="panel-heading  text-center"><a href="#" class="white"> <i class="fa fa-graduation-cap fa-2x"></i><span class="ml10">Trainings</span></a></div>
+                  <div class="panel-heading  text-center"><a href="/best/training" class="white"> <i class="fa fa-graduation-cap fa-2x"></i><span class="ml10">Trainings</span></a></div>
                   <div class="panel-body">
                     <div class="categories-list">
                     <ul>
+                      {{#each data.training}}
                       <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
+                        <a href="{{url}}">
+                          <i class="fa fa-graduation-cap"></i>
+                          {{keyword}} <span class="category-counter"></span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
+                      {{/each}}
                       </ul>
                       </div>
                   </div>
@@ -276,55 +218,35 @@
               <div class="col-md-3 col-sm-6 mt10">
               <div class="panel-group">
                 <div class="panel panel-success">
-                  <div class="panel-heading text-center"><a href="#" class="white"> <i class="fa fa-home fa-2x"></i><span class="ml10">Real Estates</span></a></div>
+                  <div class="panel-heading text-center"><a href="/best/real-estate" class="white"> <i class="fa fa-home fa-2x"></i><span class="ml10">Real Estates</span></a></div>
                   <div class="panel-body">
                     <div class="categories-list">
                     <ul>
+                      {{#each data.realestate}}
                       <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
+                        <a href="{{url}}">
+                          <i class="fa fa-home"></i>
+                          {{keyword}} <span class="category-counter"></span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
+                      {{/each}}
                       </ul>
                       </div>
                   </div>
                 </div>
                 <div class="panel panel-primary">
-                  <div class="panel-heading  text-center"><a href="#" class="white"> <i class="fa fa-car fa-2x"></i><span class="ml10">Vehicles</span></a></div>
+                  <div class="panel-heading  text-center"><a href="/best/vehicle" class="white"> <i class="fa fa-car fa-2x"></i><span class="ml10">Vehicles</span></a></div>
                   <div class="panel-body">
                     <div class="categories-list">
                     <ul>
+                      {{#each data.vehicle}}
                       <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
+                        <a href="{{url}}">
+                          <i class="fa fa-car"></i>
+                          {{keyword}} <span class="category-counter"></span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
+                      {{/each}}
                       </ul>
                       </div>
                   </div>
@@ -336,7 +258,7 @@
           <div class="row mt10">
             <div class="col-md-2 col-md-offset-5">
               
-            <a class="btn btn-danger mt10" href="post-ads.html">Browse More Categories</a>
+            <a class="btn btn-danger mt10" href="/business-categories">Browse More Categories</a>
             </div>
           </div>
           
@@ -346,7 +268,7 @@
       <!-- Categories Homepage Section End -->
       
       <!-- Recently Added Business Start -->
-      <section class="featured-lis" >
+      {{!-- <section class="featured-lis" >
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -361,7 +283,7 @@
                       </div> 
                     </div>    
                     <a href="ads-details.html" class="item-name">Lorem ipsum dolor sit</a>  
-                    {{!-- <span class="price">$150</span>   --}}
+                    <span class="price">$150</span>  
                   </div>
                 </div>
                 <div class="item">
@@ -373,7 +295,7 @@
                       </div> 
                     </div> 
                     <a href="ads-details.html" class="item-name">Sed diam nonummy</a>  
-                    {{!-- <span class="price">$67</span>  --}}
+                    <span class="price">$67</span> 
                   </div>
                 </div>
                 <div class="item">
@@ -385,7 +307,7 @@
                       </div> 
                     </div>
                     <a href="ads-details.html" class="item-name">Feugiat nulla facilisis</a>  
-                    {{!-- <span class="price">$300</span>   --}}
+                    <span class="price">$300</span>  
                   </div>
                 </div>
                 <div class="item">
@@ -397,7 +319,7 @@
                       </div> 
                     </div> 
                     <a href="ads-details.html" class="item-name">Lorem ipsum dolor sit</a>  
-                    {{!-- <span class="price">$149</span>  --}}
+                    <span class="price">$149</span> 
                   </div>
                 </div>
                 <div class="item">
@@ -409,7 +331,7 @@
                       </div> 
                     </div>
                     <a href="ads-details.html" class="item-name">Sed diam nonummy</a>  
-                    {{!-- <span class="price">$90</span>  --}}
+                    <span class="price">$90</span> 
                   </div>
                 </div>
                 <div class="item">
@@ -421,7 +343,7 @@
                       </div> 
                     </div>                     
                     <a href="ads-details.html" class="item-name">Praesent luptatum zzril</a>  
-                    {{!-- <span class="price">$169</span>  --}}
+                    <span class="price">$169</span> 
                   </div>
                 </div>
                 <div class="item">
@@ -433,7 +355,7 @@
                       </div> 
                     </div>  
                     <a href="ads-details.html" class="item-name">Lorem ipsum dolor sit</a>  
-                    {{!-- <span class="price">$79</span>  --}}
+                    <span class="price">$79</span> 
                   </div>
                 </div>
                 <div class="item">
@@ -445,17 +367,36 @@
                       </div> 
                     </div>
                     <a href="ads-details.html" class="item-name">Sed diam nonummy</a>  
-                    {{!-- <span class="price">$149</span>    --}}
+                    <span class="price">$149</span>   
                   </div>
                 </div>
               </div>
             </div> 
           </div>
         </div>
-      </section>
+      </section> --}}
       <!-- Recently Added Business End -->
 
+    <script>
 
+        function homeformsubmit(){
+            var location = $('#location').val();
+            var key = $('#keyword').val().trim().split(' ').join('-');
+            if(location == undefined || location == '' || typeof location == undefined){
+                location = 'best';
+            }
+            if(key != '' && key != undefined){
+                var url = '/'+location+'/'+key;
+                window.location.href = url;
+                return false;
+            }
+
+        }
+
+        $('.locationsbutton').click(function(){
+            $('#location').val($(this).val());
+        });
+    </script>
     </div>
-    {{> counter}}
+    {{!-- {{> counter}} --}}
     {{> footer}}

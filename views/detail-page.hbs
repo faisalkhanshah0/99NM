@@ -7,22 +7,161 @@
           <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-12 col-xs-12 well">
-                        <h1 class="section-title mb10 ml10">Business Title</h1>
-                        <div class="media">
-                          <div class="media-left media-top">
-                            <img src="assets/images/150x150.png" class="media-object" style="max-width:150px">
+                        <h1 class="title1 mb10 ml10 showbold">{{company}}, {{city}}</h1>
+
+                        <div class="row">
+                          <div class="col-md-3 col-sm-12 col-xs-12">
+                                    {{#if businessdetail.logo}}
+                                    <img alt="{{company}} logo" src="{{businessdetail.logo}}" class="media-object" style="max-width:150px">
+                                    {{else}}
+                                    <div class="colorpad" style="background-color:{{shuffled}}">{{initials}}</div>
+                                    {{/if}}
+
                           </div>
-                          <div class="media-body">
-                            <h4 class="media-heading">Media Top</h4>
-                            <p>Lorem ipsum Lorem ipsum...Lorem ipsum...Lorem ipsum...Lorem ipsum...Lorem ipsum...Lorem ipsum...Lorem ipsum...Lorem ipsum...Lorem ipsum...Lorem ipsum...Lorem ipsum...Lorem ipsum...</p>
+                          <div class="col-md-9 col-sm-12 col-xs-12">
+                            <h2 class="mb10 extra-subheading1"><i class="fa fa-map-marker fa-lg mr10"></i>{{businessdetail.companyaddress}}</h2>
+                            
+                            <table class="table table-striped mt10">
+                              <tbody>
+                                <tr>
+                                  <th>
+                                    <i class="fa fa-mobile"></i>
+                                    Mobile Number
+                                  </th>
+                                  <td>
+                                    {{#if businessdetail.mobilenumber}}
+                                    {{businessdetail.mobilenumber}}
+                                    {{else}}
+                                      NA
+                                    {{/if}}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>
+                                    <i class="fa fa-phone"></i>
+                                    Phone Number
+                                  </th>
+                                  <td>
+                                    {{#if businessdetail.phonenumber}}
+                                    {{businessdetail.phonenumber}}
+                                    {{else}}
+                                      NA
+                                    {{/if}}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>
+                                    <i class="fa fa-envelope"></i>
+                                    Email Address
+                                  </th>
+                                  <td>
+                                    {{#if businessdetail.email}}
+                                    {{businessdetail.email}}
+                                    {{else}}
+                                      NA
+                                    {{/if}}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>
+                                    <i class="fa fa-desktop"></i>
+                                    Website
+                                  </th>
+                                  <td>
+                                    {{#if businessdetail.websiteaddress}}
+                                    {{businessdetail.websiteaddress}}
+                                    {{else}}
+                                      NA
+                                    {{/if}}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>
+                                    <i class="fa fa-list-ul"></i>
+                                    Category
+                                  </th>
+                                  <td>
+                                    {{#if businessdetail.category}}
+                                    {{businessdetail.category}}
+                                    {{else}}
+                                      NA
+                                    {{/if}}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>
+                                    <i class="fa fa-map-marker"></i>
+                                    City
+                                  </th>
+                                  <td>
+                                    {{#if businessdetail.city}}
+                                    {{businessdetail.city}}
+                                    {{else}}
+                                      NA
+                                    {{/if}}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>
+                                    <i class="fa fa-map-marker"></i>
+                                    Pincode
+                                  </th>
+                                  <td>
+                                    {{#if businessdetail.pincode}}
+                                    {{businessdetail.pincode}}
+                                    {{else}}
+                                      NA
+                                    {{/if}}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>
+                                    <i class="fa fa-calendar"></i>
+                                    Opening Hours
+                                  </th>
+                                  <td>
+                                    {{#if businessdetail.openinghours}}
+                                    {{businessdetail.openinghours}}
+                                    {{else}}
+                                      NA
+                                    {{/if}}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </div>
+                          <div class="col-md-12 col-sm-12 col-xs-12">
+                          <h3 class="extra-subheading showbold">Description</h3>
+                          <p>{{company}} is located in {{businessdetail.city}}. {{company}} in {{businessdetail.city}}. Listed with category {{businessdetail.category}}, postal address, contact number, opening hours, logo, postal code, email &amp; website address. Find contact details &amp; address of {{company}} in {{businessdetail.city}}.</p>
+
+                          <p class="mt10 mb10"></p>
+                          <p>Our mailing address is - {{businessdetail.companyaddress}} and postal code is - {{businessdetail.pincode}}</p>
+                          <p class="mt10 mb10"></p>
+
+                           <p>We are engaged in {{businessdetail.category}}, {{businessdetail.category}} in {{city}}, {{businessdetail.category}} in {{area}}, {{businessdetail.category}} in {{businessdetail.city}}, {{businessdetail.category}} services contact detail in {{businessdetail.city}}, Best {{businessdetail.category}} in {{businessdetail.city}}, {{company}} in {{businessdetail.city}}, {{company}} in {{city}}, {{company}} in {{area}}, {{businessdetail.category}} near me, best {{businessdetail.category}} near me, {{company}} near me.</p>
+                        </div>
                         </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-3">
+                
+                <div class="col-md-4 col-sm-12 col-xs-12">
                   {{> sidebar}}
                 </div>
             </div>
+            <div class="row">
+              <div class="col-md-8 col-sm-12 col-xs-12 well">
+                <h3 class="extra-subheading showbold">Send Enquiry To {{company}}</h3>
+                {{> sendquerytobusiness}}
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  {{> sidebarblog}}
+                </div>
             </div>
+            
+            
+            {{> responsivead}}
+              
+            </div>
+          </section>
       </div>
       </section>
       <!-- Content Section End -->
@@ -31,5 +170,5 @@
 
     </div>
 
-  {{> counter}}
+  {{!-- {{> counter}} --}}
   {{> footer}}

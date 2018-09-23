@@ -6,40 +6,54 @@
         <section id="categories-homepage">
           <div class="container">
             <div class="row">
-                <h3 class="section-title mb10 ml10">Business Listing</h3>
+                <h1 class="section-title mb10 ml10 showbold">{{searchstatement}}</h1>
                 <div class="col-md-8 col-sm-12 col-xs-12">
                         <div class="row">
                           <div class="col-md-12 well">
                               <!-- Media top -->
+                              {{#if data}}
+                              {{#each data}}
                               <div class="media">
                                 <div class="media-left media-top">
                                   <a href="#">
-                                  <img src="assets/images/150x150.png" class="media-object" style="max-width:60px">
+                                    {{#if logo}}
+                                    <img alt="{{name}} logo" src="{{logo}}" class="media-object" style="max-width:60px">
+                                    {{else}}
+                                    <div class="colorpad2" style="background-color:{{color}}">{{initials}}</div>
+                                    {{/if}}
+                                  {{!-- <img src="assets/images/150x150.png" class="media-object" style="max-width:60px"> --}}
                                   </a>
                                 </div>
                                 <div class="media-body">
-                                  <a href="#">
-                                  <h4 class="media-heading">Business Title</h4>
-                                  <p>View Detail <i class="fa fa-arrow-circle-right fa-lg"></i></p>
+                                  <a href="{{url}}">
+                                  <h3 class="media-heading">{{name}}</h3>
+                                  <p><span class="showbold">Offered Services : </span>{{category}}</p>
+                                  <p class="showbold">View Detail <i class="fa fa-arrow-circle-right fa-lg"></i></p>
                                   </a>
                                 </div>
                               </div>
-                              <!-- Media top -->
-                              <div class="media">
-                                <div class="media-left media-top">
-                                  <a href="#">
-                                  <img src="assets/images/150x150.png" class="media-object" style="max-width:60px">
-                                  </a>
-                                </div>
-                                <div class="media-body">
-                                  <a href="#">
-                                  <h4 class="media-heading">Business Title</h4>
-                                  <p>View Detail <i class="fa fa-arrow-circle-right fa-lg"></i></p>
-                                  </a>
-                                </div>
-                              </div>
+                              {{/each}}
+                              {{else}}
+                              <h3 class="extra-subheading"> No Result Found For This Keyword. Please Try Something Else ...</h3>
+                              <a class="btn btn-danger animated infinite pulse" href="/"><span class="fa fa-home"></span> Let's get back to Home Page.</a>
+                    
+                              {{/if}}
                           </div>
                         </div>
+                        {{#if data}}
+                        <div class="row">
+                          <div class="col-md-12">
+                            <nav aria-label="...">
+                              <ul class="pagination">
+                                {{#forpagination dataobj.pagecode dataobj.pageno dataobj.urlforpagination dataobj.pagelow dataobj.pageup 1}}
+                                {{this}}
+                                {{/forpagination}}
+                              </ul>
+                            </nav>
+                          </div>
+                        </div>
+                        {{else}}
+                         {{!-- Buttons for No Result --}}
                         <div class="row">
                           <div class="col-md-12">
                             <nav aria-label="...">
@@ -47,25 +61,20 @@
                                 <li class="page-item disabled">
                                   <a class="page-link" href="#" tabindex="-1">Previous</a>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
                                 <li class="page-item active">
-                                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                  <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                                <li class="page-item"><a class="page-link" href="#">9</a></li>
-                                <li class="page-item"><a class="page-link" href="#">10</a></li>
-                                <li class="page-item">
+                                <li class="page-item disabled">
                                   <a class="page-link" href="#">Next</a>
                                 </li>
                               </ul>
                             </nav>
                           </div>
                         </div>
+                        {{/if}}
+
+                        {{> responsivead}}
+
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                   {{> sidebar}}
@@ -80,5 +89,5 @@
 
     </div>
 
-  {{> counter}}
+  {{!-- {{> counter}} --}}
   {{> footer}}

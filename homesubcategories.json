@@ -1,0 +1,79 @@
+{
+    "restaurant":[
+        "Restaurants",
+        "Home Delivery Restaurants",
+        "Restaurants and Bars",
+        "Multicuisine Restaurants",
+        "Moderate Restaurants (Rs 400 To Rs 800)",
+        "Pure Veg Restaurants",
+        "Inexpensive Restaurants (Below Rs 400)",
+        "Chinese Restaurants"
+        ],
+    "service":[
+        "Mobile Repair",
+        "Computer Repair and Services",
+        "Domestic Courier Services",
+        "Lawyers",
+        "Notary Services",
+        "Courier Services",
+        "Telecom Services",
+        "Security Services"
+        ],
+    "jobs":[
+        "Jobs",
+        "Work From Home Jobs",
+        "Placement Services For Part Time Job",
+        "Part Time Placement Services",
+        "Data Entry Job Work",
+        "Placement Services (Candidate)",
+        "Placement Services For Employers",
+        "Placement Services For BPO Candidate"
+        ],
+    "realestate":[
+        "Real Estate Placement Services Candidate",
+        "Online Real Estate Agent",
+        "Real Estate Major",
+        "Computer Software Developer Real Estate",
+        "Real Estate Developers",
+        "Placement Services For Employers",
+        "Institutes For Real Estate"
+        ],
+    "electronics":[
+        "Electronics Repair and Services",
+        "Electronics Instruments",
+        "Electronic Goods Showrooms",
+        "Electrical and Electronics Shops",
+        "TV Repair and Services",
+        "DVD Player Repair and Services",
+        "AC Repair and Services"
+        ],
+    "shopping":[
+        "Online Shopping Websites",
+        "Shopping Centres",
+        "Malls",
+        "Internet Website Designers",
+        "Computer Software Developers",
+        "Travel Websites",
+        "Website Development",
+        "Fashion"
+        ],
+    "training":[
+        "Computer Training Institutes",
+        "Motor Training Schools",
+        "Tally Training Institutes",
+        "Driving License Agent",
+        "SAP Training Institutes",
+        "Software Training Institutes",
+        "Java Training Institutes"
+        ],
+    "vehicle":[
+        "Transporters",
+        "Transporters For Vehicle",
+        "Finance Against Vehicles",
+        "Motor Training Schools",
+        "Driving License Agent",
+        "Logistic Services",
+        "Transporters For All India",
+        "Vehicle"
+        ]
+}

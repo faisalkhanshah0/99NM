@@ -6,6 +6,7 @@ Disallow: /assets/extras/
 Disallow: /assets/img/
 Disallow: /assets/images/
 Disallow: /health.html
+Disallow: /api/*
 Allow: /
 
 Sitemap: https://99nearme.com/sitemap.xml

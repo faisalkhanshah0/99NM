@@ -1,3 +1,4 @@
+require('./server/config');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -9,6 +10,7 @@ var compression = require('compression')
 
 var indexRouter = require('./routes/index');
 var apisRouter = require('./routes/api');
+var sitemapRouter = require('./routes/sitemap');
 
 var app = express();
 
@@ -28,8 +30,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+
+app.use('/sitemaps', sitemapRouter);
 app.use('/api', apisRouter);
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
