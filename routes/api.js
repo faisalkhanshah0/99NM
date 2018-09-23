@@ -7,7 +7,7 @@ const { contactquery, clientquery, submitad, getNextSequenceValue } = require('.
 const {mailquery} = require('.././server/sendmail');
 
 var auth = function (req, res, next) {
-  if(req.connection.remoteAddress === process.env.IP || req.connection.remoteAddress === process.env.IP2){
+  if(req.connection.remoteAddress === process.env.IP || req.connection.remoteAddress === process.env.IP2 || req.connection.remoteAddress === process.env.IP3){
     next();
 }
 else{

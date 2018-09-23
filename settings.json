@@ -6,7 +6,7 @@
             "cwd": "/opt/99NM/bin",
     "env": {
                     "ENV": "prod",
-                    "APP_ENVIRONMENT": "production",
+                    "APP_ENVIRONMENT": "prod",
                     "PORT": "3000"
             }
             }]
