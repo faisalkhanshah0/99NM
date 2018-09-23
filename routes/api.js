@@ -3,7 +3,7 @@ var router = express.Router();
 
 const { mongo } = require('.././server/mongo-connect'); 
 const { fetchone,fetch, sitemapcategories, categorycount, fetchrecords, count,sitemapurls, fetchcategories, fetchsubcategories } = require('.././server/find');
-const { contactquery } = require('.././server/submit');
+const { contactquery, clientquery, submitad, getNextSequenceValue } = require('.././server/submit');
 const {mailquery} = require('.././server/sendmail');
 
 var auth = function (req, res, next) {
@@ -15,6 +15,26 @@ else{
   // res.status(200).send('Not Authorized.');
 }
 }
+
+// Post an ad submission pipe
+router.post('/submit/ad', auth, function(req, res, next) {
+  let dataobj = req.body;
+  mongo.then((db) => {
+      return getNextSequenceValue(db,'cid');
+  }).then((docs) => {
+      dataobj.cid = docs.cid;
+      dataobj.status = 2;
+      db = docs.db;
+      return submitad(db, dataobj);
+  }).then((docs) => {
+      let url = process.env.BASEURL+'/'+dataobj.url+'/'+dataobj.cid;
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).send({result: 1, url});
+      
+     }).catch((e) => {
+      res.status(200).send({result: 0, e});
+  });
+});
 
 // Post contact query submission pipe
 router.post('/contact/query', auth, function(req, res, next) {
@@ -35,6 +55,25 @@ router.post('/contact/query', auth, function(req, res, next) {
   });
   // res.status(200).send(req.body);
 });
+// Post contact query submission pipe
+router.post('/client/query', auth, function(req, res, next) {
+  let dataobj = req.body;
+  dataobj.status = 0;
+  mongo.then((db) => {
+    return clientquery(db, dataobj);
+  }).then((docs) => {
+    //   return mailquery(dataobj); 
+    //  }).then((doc)=>{
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).send({result: 1});
+      
+     }).catch((e) => {
+      res.status(200).send({result: 0, e});
+  });
+  // res.status(200).send(req.body);
+});
+ 
 
 // Get categories count
 router.get('/listings/categorycount', auth, function(req, res, next) {

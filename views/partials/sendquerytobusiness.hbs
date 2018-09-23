@@ -1,18 +1,28 @@
-<form>
+                          
+                          <div id="successbox" class="alert alert-success alert-dismissible fade in">
+                            <a href="#" class="close messageboxclose" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success :</strong><p id="success"></p>
+                          </div>                        
+                          <div id="errorbox" class="alert alert-danger alert-dismissible fade in">
+                            <a href="#" class="close messageboxclose" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error :</strong><p id="error"></p>
+                          </div>
+                        <form action="#" onsubmit="return validatequery()" id="queryform" method="GET">
+                           
                           <div class="form-row">
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="fullname">Full Name</label>
-                              <input type="text" class="form-control" id="inputfullname" placeholder="Full Name">
+                              <label for="inputfullname">Full Name *</label>
+                              <input type="text" class="form-control" required id="inputfullname" placeholder="Full Name">
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputmobile">Mobile</label>
-                              <input type="tel" class="form-control" id="inputmobile" placeholder="Mobile">
+                              <label for="inputmobile">Mobile *</label>
+                              <input type="number" class="form-control" required id="inputmobile" placeholder="Mobile">
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-12">
-                              <label for="inputemail">Email</label>
-                              <input type="email" class="form-control" id="inputemail" placeholder="Email">
+                              <label for="inputemail">Email *</label>
+                              <input type="email" class="form-control" required id="inputemail" placeholder="Email">
                             </div>
                           </div>
                           <div class="form-row">
@@ -23,10 +33,16 @@
                             </div>
                           </div>
                           <div class="form-row mt10 mb10">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p>Note : * denotes Mandatory fields.</p>
+                            </div>
+                          </div>
+                          <div class="form-row mt10 mb10">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
                               <div class="g-recaptcha" data-sitekey="6LcMbnAUAAAAALj2K6R7reHUXl7CbMuU2M64lceI"></div>
                             </div>
                           </div>
+
                           <div class="form-row mt10 mb10">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
                               <button type="submit" class="btn btn-primary">Send</button>
@@ -34,3 +50,48 @@
                           </div>
                           
                         </form>
+
+                        <script>
+      $('#errorbox').hide();
+      $('#successbox').hide();
+      function validatequery(){
+        let company = "{{company}}";
+        let id = `{{#if businessdetail.email}}{{businessdetail.email}}{{else}}{{cid}}{{/if}}`;
+        let dataobj = {
+        forclient:company,
+        clientemail:id,  
+        fullname: $('#inputfullname').val().trim(),
+        mobile: $('#inputmobile').val().trim(),
+        email: $('#inputemail').val().trim(),
+        message: $('#inputmessage').val().trim()
+        };
+        if(dataobj.fullname && dataobj.mobile && dataobj.email){
+
+          $.post("/api/client/query", dataobj, function(result){
+              console.log(result);
+              if(result.result == 1)
+              {
+              $('#errorbox').hide();
+              $('#successbox').show();
+              $('#success').html(`Thanks for submitting your query to ${company}. We are forwarding your query, it will be delivered soon.<br/>Thanks <br/>99nearme`);
+              $('#queryform').hide();
+              }
+              else{
+                $('#successbox').hide();
+                $('#errorbox').show();
+                $('#error').html('Something went wrong. please check your values and try it again. Thanks 99nearme');
+                
+              }
+          });
+          return false;
+        }
+        else{
+          $('#successbox').hide();
+          $('#errorbox').show();
+          $('#error').html('Something went wrong. please check your values and try it again.<br>Thanks <br>99nearme');
+          return false;
+        }
+
+        
+      }
+    </script>

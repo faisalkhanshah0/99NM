@@ -18,19 +18,20 @@
                             <strong>Error :</strong><p id="error"></p>
                           </div>
                         <form action="/contact" onsubmit="return validatecontact()" id="contactform" method="GET">
+                           
                           <div class="form-row">
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="fullname">Full Name</label>
+                              <label for="fullname">Full Name *</label>
                               <input type="text" class="form-control" required id="inputfullname" placeholder="Full Name">
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputmobile">Mobile</label>
+                              <label for="inputmobile">Mobile *</label>
                               <input type="number" class="form-control" required id="inputmobile" placeholder="Mobile">
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-12">
-                              <label for="inputemail">Email</label>
+                              <label for="inputemail">Email *</label>
                               <input type="email" class="form-control" required id="inputemail" placeholder="Email">
                             </div>
                           </div>
@@ -42,8 +43,13 @@
                             </div>
                           </div>
                           <div class="form-row mt10 mb10">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p>Note : * denotes Mandatory fields.</p>
+                            </div>
+                          </div>
+                          <div class="form-row mt10 mb10">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                              {{!-- <div class="g-recaptcha" data-sitekey="6LcMbnAUAAAAALj2K6R7reHUXl7CbMuU2M64lceI"></div> --}}
+                              <div class="g-recaptcha" data-sitekey="6LcMbnAUAAAAALj2K6R7reHUXl7CbMuU2M64lceI"></div>
                             </div>
                           </div>
                           <div class="form-row mt10 mb10">
@@ -65,7 +71,6 @@
       <!-- Content Section End -->
       
     <script>
-      console.log('excuted');
       $('#errorbox').hide();
       $('#successbox').hide();
       function validatecontact(){
@@ -75,7 +80,7 @@
         email: $('#inputemail').val().trim(),
         message: $('#inputmessage').val().trim()
         };
-        if(dataobj.fullname && dataobj.mobile && dataobj.email && dataobj.message){
+        if(dataobj.fullname && dataobj.mobile && dataobj.email){
 
           $.post("/api/contact/query", dataobj, function(result){
               console.log(result);

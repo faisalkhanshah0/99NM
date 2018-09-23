@@ -13,7 +13,7 @@ var fetch = (db) => {
      let uri1 = city+'/'+area+'/'+title;
      let uri = uri1.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     return new Promise((resolve, reject) => {
-        db.collection(process.env.MONGO_COLLECTION_NAME).find({url:uri,cid:id},{cid:0,slug:0,url:0,_id:0}).toArray().then((docs) => {
+        db.collection(process.env.MONGO_COLLECTION_NAME).find({url:uri,cid:id,status:1},{slug:0,url:0,_id:0}).toArray().then((docs) => {
             resolve(docs[0]);
             
         }).catch((e) => {

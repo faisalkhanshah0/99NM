@@ -278,6 +278,7 @@ axios.get(uri3)
           return res.redirect(process.env.BASEURL+'/404');  
         }
         // console.log(businessdetail);
+        let cid = businessdetail.cid;
         let arr = businessdetail.city.split(",");
         let area = arr[0].trim();
         let city = arr[1].trim();
@@ -291,7 +292,7 @@ axios.get(uri3)
         let sitename = "99 Nearme - Local Search Engine, Business Listing, Business Articles";
         let title = `${company},${city} - ${mainservice} in ${area}, ${city}`;
         let initials = company.trim().charAt(0);
-        res.render('detail-page', {title, robotcheck, shuffled, company, initials, businessdetail, city, area, description, sitename, keywords, pageurl, imgurl });
+        res.render('detail-page', {title, robotcheck, shuffled, company, initials, businessdetail, city, area, description, sitename, keywords, pageurl, imgurl,cid });
 
 
   })

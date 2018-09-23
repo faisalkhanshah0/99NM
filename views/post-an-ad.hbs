@@ -8,82 +8,111 @@
             <div class="row">
                 <h1 class="section-title mb10 ml10 showbold">Post An Ad</h1>
                 <div class="col-md-9 col-sm-12 col-xs-12  well">
-                        <h2 class="extra-subheading mb10">Create account and Add your Business / Services / Ad</h2>
+                        <h2 class="extra-subheading mb10 thanks">Create account and Add your Business / Services / Ad</h2>
                         
-                        <form>
+                          <div id="successbox" class="alert alert-success alert-dismissible fade in">
+                            <a href="#" class="close messageboxclose" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success :</strong><p id="success"></p>
+                          </div>                        
+                          <div id="errorbox" class="alert alert-danger alert-dismissible fade in">
+                            <a href="#" class="close messageboxclose" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error :</strong><p id="error"></p>
+                          </div>
+                        <form action="/post-an-ad" onsubmit="return validatead()" id="adform" method="GET">
                           <h5 class="extra-subheading mt10">Account Detail :-</h5>
+                          <p>Note : * denotes Mandatory fields.</p>
                           <div class="form-row">
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="fullname">Full Name</label>
-                              <input type="text" class="form-control" id="inputfullname" placeholder="Your Full Name">
+                              <label for="inputfullname">Full Name *</label>
+                              <input type="text" class="form-control" required maxlength="20" id="inputfullname" placeholder="Your Full Name">
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
                               <label for="inputmobile">Mobile</label>
-                              <input type="tel" class="form-control" id="inputmobile" placeholder="Mobile">
+                              <input type="number" maxlength="25" class="form-control" id="inputmobile" placeholder="Enter Mobile">
                             </div>
                           </div>
                           <div class="form-row mb10">
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputemail">Email</label>
-                              <input type="email" class="form-control" id="inputemail" placeholder="Email">
+                              <label for="inputemail">Email *</label>
+                              <input type="email" class="form-control" required id="inputemail" placeholder="Email">
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
                               <label for="inputpassword">New Password</label>
-                              <input type="password" class="form-control" id="inputpassword" placeholder="New Password">
+                              <input type="password" minlength="4" maxlength="20" class="form-control" id="inputpassword" placeholder="New Password">
                             </div>
                           </div>
                           <h5 class="extra-subheading mt10">Business / Services / Shop / Ad Detail :-</h5>
                           <div class="form-row mb10">
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputbusinessname">Business / Service / Shop Name</label>
-                              <input type="text" class="form-control" id="inputbusinessname" placeholder="Enter Business / Service / Shop Name">
+                              <label for="inputbusinessname">Business / Service / Shop Name *</label>
+                              <input type="text" class="form-control" maxlength="100" required id="inputbusinessname" placeholder="Example: ABC Incorp Ltd">
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputcategory">Business Category</label>
-                              <input type="text" class="form-control" id="inputcategory" placeholder="Enter Category">
-                            </div>
-                          </div>
-                          <div class="form-row mt10">
-                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputAddress">Address</label>
-                              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                            </div>
-                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputAddress2">Address 2</label>
-                              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                              <label for="inputcategory">Business Category / Related Keywords *</label>
+                              <input type="text" maxlength="100" class="form-control" required id="inputcategory" placeholder="Example : Laptop Repairs, Laptop Dealer">
                             </div>
                           </div>
                           <div class="form-row mb10">
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputcity">City</label>
-                              <input type="text" class="form-control" id="inputcity" placeholder="Enter City">
+                              <label for="inputwebsite">Website</label>
+                              <input type="text" class="form-control" id="inputwebsite" placeholder="www.google.com">
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputbusinessmobile">Business Mobile / Phone</label>
-                              <input type="text" class="form-control" id="inputbusinessmobile" placeholder="Enter Mobile No. / Phone No.">
+                              <label for="inputopeninghours">Opening Hours</label>
+                              <input type="text" maxlength="25" class="form-control" id="inputopeninghours" placeholder="Mon,Tue,Wed,Thu,Fri(0900-2100),Sat(0900-1500)">
+                            </div>
+                          </div>
+                          <div class="form-row mt10">
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputaddress">Address *</label>
+                              <input type="text" maxlength="200" class="form-control" required id="inputaddress" placeholder="1234 Main St, Near Abc Park">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputarea">Area / Locality Name</label>
+                              <input type="text"  maxlength="25" class="form-control" id="inputarea" placeholder="Asif Ali Road">
+                            </div>
+                          </div>
+                          <div class="form-row mb10">
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputcity">City *</label>
+                              <input type="text" class="form-control" maxlength="25" required id="inputcity" placeholder="Delhi">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                              <label for="inputbusinessmobile">Business Mobile / Phone *</label>
+                              <input type="number" class="form-control"  maxlength="25" required id="inputbusinessmobile" placeholder="Enter Mobile No. / Phone No.">
                             </div>
                           </div>
                           <div class="form-row mt10">
                             <div class="form-group col-md-12">
                               <label for="inputbusinessdescription">Description</label>
-                              <textarea id="inputbusinessdescription" placeholder="Business Description" class="form-control" rows="3"></textarea>
+                              <textarea maxlength="2000" id="inputbusinessdescription" placeholder="Business Description" class="form-control" rows="3"></textarea>
                             </div>
                           </div>
 
                           <div class="form-row mb10">
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
                               <label for="inputpincode">Area Pin Code</label>
-                              <input type="text" class="form-control" id="inputpincode" placeholder="Enter Area Pincode">
+                              <input type="text" maxlength="7" class="form-control" id="inputpincode" placeholder="Enter Area Pincode">
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputbusinessprofile">Business Profile (Shop / Service / Company / Others)</label>
-                              <select id="inputbusinessprofile" class="form-control">
-                                <option selected>Choose...</option>
-                                <option value="1">Shop</option>
-                                <option value="2">Service</option>
-                                <option value="3">Company</option>
-                                <option value="4">Others</option>
+                              <label for="inputbusinessprofile">Business Profile (Shop / Service / Company / Others) *</label>
+                              <select id="inputbusinessprofile" required class="form-control">
+                                <option value="0">Choose...</option>
+                                <option value="shop">Shop</option>
+                                <option value="service">Service</option>
+                                <option value="company">Company</option>
+                                <option value="restaurant">Restaurant</option>
+                                <option value="jobs">Jobs</option>
+                                <option value="real-estate">Real Estate</option>
+                                <option value="training">Trainings</option>
+                                <option value="vehicle">Vehicle</option>
+                                <option value="others">Others</option>
                               </select>  
+                            </div>
+                          </div>
+                          <div class="form-row mt10 mb10">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p>Note : * denotes Mandatory fields.</p>
                             </div>
                           </div>
                           <div class="form-row mt10 mb10">
@@ -110,6 +139,62 @@
       <!-- Content Section End -->
       
 
+ <script>
+      $('#errorbox').hide();
+      $('#successbox').hide();
+      function validatead(){
+        let dataobj = {
+        concernperson: $('#inputfullname').val().trim(),
+        mobilenumber: $('#inputmobile').val().trim(),
+        email: $('#inputemail').val().trim(),
+        password: $('#inputpassword').val().trim(),
+        companyname: $('#inputbusinessname').val().trim(),
+        category: $('#inputcategory').val().trim(),
+        address:$('#inputaddress').val().trim(),
+        area: $('#inputarea').val().trim(),
+        cityname : $('#inputcity').val().trim(),
+        city: $('#inputarea').val().trim()+', '+$('#inputcity').val().trim(),
+        pincode: $('#inputpincode').val().trim(),
+        companyaddress: $('#inputaddress').val().trim()+', '+$('#inputarea').val().trim()+', '+$('#inputcity').val().trim()+' - '+$('#inputpincode').val().trim(),
+        openinghours: $('#inputopeninghours').val().trim(),
+        websiteaddress: $('#inputwebsite').val().trim(),
+        slug: $('#inputbusinessname').val().trim().split(' ').join('-'),
+        url: $('#inputcity').val().trim()+'/'+$('#inputbusinessname').val().trim().split(' ').join('-'),
+        phonenumber: $('#inputbusinessmobile').val().trim(),
+        businessdescription: $('#inputbusinessdescription').val().trim(),
+        businessprofile: $('#inputbusinessprofile').val().trim(),
+
+        };
+        if(dataobj.concernperson && dataobj.email && dataobj.companyname && dataobj.category && dataobj.address && dataobj.city && dataobj.phonenumber && dataobj.businessprofile && dataobj.businessprofile!=0){
+             
+          $.post("/api/submit/ad", dataobj, function(result){
+              if(result.result == 1)
+              {
+              $('#errorbox').hide();
+              $('#successbox').show();
+              $('#success').html(`We have taken your data. please wait for next 72 hours it is under review queue, Your ad will be published soon. <br/> Your ad will be publised on : <span class="showbold">${result.url}</span><br/>Thanks <br/>99nearme`);
+              $('#adform').hide();
+              $('.thanks').html('Thanks for Posting your Ad. - 99Nearme');
+              }
+              else{
+                $('#successbox').hide();
+                $('#errorbox').show();
+                $('#error').html('Something went wrong. please check your values and try it again. Thanks 99nearme');
+                
+              }
+          });
+          return false;
+        }
+        else{
+          $('#successbox').hide();
+          $('#errorbox').show();
+          $('#error').html('Something went wrong. Maybe you missed business profile. please check your values and try it again. Thanks 99nearme');
+          return false;
+        }
+
+        
+      }
+    </script>
 
     </div>
 

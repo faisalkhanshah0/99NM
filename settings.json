@@ -3,7 +3,7 @@
             {
             "name": "99nearme",
             "script": "www",
-            "cwd": "/opt/99nearme/bin",
+            "cwd": "/opt/99NM/bin",
     "env": {
                     "ENV": "prod",
                     "APP_ENVIRONMENT": "production",
