@@ -92,6 +92,7 @@ router.get('/business-categories', function(req, res, next) {
   res.redirect(301, process.env.BASEURL+'/business-categories/1');
 });
 router.get('/business-categories/:pageno', function(req, res, next) {
+  console.log('f1');
   let pageno = parseInt(req.params.pageno);
   let pageup;
   let pagelow;
@@ -103,42 +104,66 @@ router.get('/business-categories/:pageno', function(req, res, next) {
   let imgurl = req.protocol + '://' + req.get('host') + '/assets/images/99nearme.png';
   let sitename = "99 Nearme - Local Search Engine, Business Listing, Business Articles";
   
+  console.log('f2');
   if(pageno>5){
+
+    console.log('f3');
     pagelow = pageno-4;
     pageup = pageno+4;
   }
   else{
+
+    console.log('f4');
     pagelow = 1;
     pageup = 9;
   }
-
+  console.log('f5');
   let urlforpagination = `/business-categories/`
   let uri5 = `${process.env.BASEURL}/api/listings/fetchcategories/${pageno}`
       axios.get(uri5)
         .then(function (response) {
+
+	      console.log('f6');
               let businesscategories = response.data;
               if(businesscategories.length < 20 && businesscategories.length > 1){
                 pagecode = 0;
                 pagelow = pageno-8;
                 pageup = pageno;
+		
+                console.log('f7');
               }
               else if(businesscategories.length == 0){
                 // pagelow = pageno;
                 // pageup = pageno;
                 // pagecode = 0;
+
+                console.log('f8');
                 res.redirect(301, process.env.BASEURL+'/404');                
               }
+              else{
+		console.log('f8.1');
+		}
+
+              console.log('f9');
               let dataobj = {
                 urlforpagination, pagelow, pageup, pagecode, pageno
               }
+
+              console.log('f10');
               businesscategories.forEach((element, index) => {
                 businesscategories[index].slug = element._id.trim().split(' ').join('-').toLowerCase();
               });
+
+              console.log('11');
               // res.json(businesscategories);
               res.render('categories', { title, keywords, description, sitename, pageurl, imgurl, dataobj, businesscategories, robotcheck });
         })
         .catch(function (error) {
-          res.redirect(301, process.env.BASEURL+'/404');
+         
+         console.log('12');
+         console.log(error);
+        // res.json({error:error});
+         res.redirect(301, process.env.BASEURL+'/404');
         });
 
 });
