@@ -12,24 +12,24 @@
                           <div class="form-row">
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
                               <label for="inputfullname">Full Name *</label>
-                              <input type="text" class="form-control" required id="inputfullname" placeholder="Full Name">
+                              <input type="text" class="form-control" maxlength="25" minlength="4" required id="inputfullname" placeholder="Full Name">
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
                               <label for="inputmobile">Mobile *</label>
-                              <input type="number" class="form-control" required id="inputmobile" placeholder="Mobile">
+                              <input type="number" class="form-control" maxlength="15" minlength="7" required id="inputmobile" placeholder="Mobile">
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
                               <label for="inputemail">Email *</label>
-                              <input type="email" class="form-control" required id="inputemail" placeholder="Email">
+                              <input type="email" class="form-control" maxlength="25" minlength="7" required id="inputemail" placeholder="Email">
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
                               <label for="inputmessage">Message</label>
                               {{!-- <input type="number" class="form-control" id="inputmessage" placeholder="Message"> --}}
-                              <textarea id="inputmessage" placeholder="Message" class="form-control" rows="5"></textarea>
+                              <textarea id="inputmessage" maxlength="250" placeholder="Message" class="form-control" rows="5"></textarea>
                             </div>
                           </div>
                           <div class="form-row mt10 mb10">
