@@ -219,7 +219,7 @@ router.get('/:location/:key/:pageno', function(req, res, next) {
     searchstatement = `Best ${key1} near me - 99nearme`;
     title = `${key1} near me, Best ${key1} near me - 99nearme`;
     keywords = `${key1} near me, Best ${key1} near me, ${key1} service near by, ${key1} near by, Best ${key1}, ${key1} shop, ${key1} shop near me, ${key1} near me open now, ${key} nearby`;
-    description = `Check out collection of Best ${key1} near me, ${key1} nearby to connect with top best restaurants near me & you and get amazing offers, discounts on ${key1} services.`;
+    description = `Check out collection of Best ${key1} near me, ${key1} nearby to connect with top best ${key1} near me & you and get amazing offers, discounts on ${key1} services.`;
     pageurl = req.protocol + '://' + req.get('host') + req.originalUrl;
     imgurl = req.protocol + '://' + req.get('host') + '/assets/images/99nearme.png';
     sitename = "99 Nearme - Local Search Engine, Business Listing, Business Articles";
