@@ -1,9 +1,4 @@
 User-agent: *
-Disallow: /assets/js/
-Disallow: /assets/css/
-Disallow: /assets/fonts/
-Disallow: /assets/extras/
-Disallow: /assets/img/
 Disallow: /health.html
 Disallow: /api/*
 Allow: /

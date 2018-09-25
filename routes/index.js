@@ -5,6 +5,8 @@ var axios = require('axios');
 var randomhex = '0123456789ABCDEF';
 var robotcheck = 1;
 /* GET home page. */
+
+
 router.get('/', function(req, res, next) {
 
   fs.readFile(__dirname+'/../homesubcategories.json', 'utf8', (err, string)=>{
@@ -44,7 +46,9 @@ router.get('/', function(req, res, next) {
     
 });
 
-
+router.get('/sitemap.xml', function(req, res, next) {
+  res.redirect(301, process.env.BASEURL+'/sitemaps/main.xml');
+  });
 router.get('/about', function(req, res, next) {
   let title = "About 99 Nearme - Local Search Engine, Business Listing, Business Articles";
   let keywords = `99 near me, 99nearme, business listing, business news & updates, local business, business marketing, post an ad, advertise, services contacts, restaurants, services, jobs, real estate, shops, electricians, tutors, tranings, repair services, companies, list of restaurant, list of dentist, list of hospitals, salon near me, near me, nearby,shopping centers,store address,IT services`;
@@ -92,7 +96,6 @@ router.get('/business-categories', function(req, res, next) {
   res.redirect(301, process.env.BASEURL+'/business-categories/1');
 });
 router.get('/business-categories/:pageno', function(req, res, next) {
-  console.log('f1');
   let pageno = parseInt(req.params.pageno);
   let pageup;
   let pagelow;
@@ -104,63 +107,59 @@ router.get('/business-categories/:pageno', function(req, res, next) {
   let imgurl = req.protocol + '://' + req.get('host') + '/assets/images/99nearme.png';
   let sitename = "99 Nearme - Local Search Engine, Business Listing, Business Articles";
   
-  console.log('f2');
   if(pageno>5){
-
-    console.log('f3');
-    pagelow = pageno-4;
+  pagelow = pageno-4;
     pageup = pageno+4;
   }
   else{
 
-    console.log('f4');
     pagelow = 1;
     pageup = 9;
   }
-  console.log('f5');
   let urlforpagination = `/business-categories/`
   let uri5 = `${process.env.BASEURL}/api/listings/fetchcategories/${pageno}`
       axios.get(uri5)
         .then(function (response) {
 
-	      console.log('f6');
-              let businesscategories = response.data;
+	            let businesscategories = response.data;
               if(businesscategories.length < 20 && businesscategories.length > 1){
+               if(pageno<9){
+                pagecode = 0;
+                pagelow = pageno-(pageno-1);
+                pageup = pageno;
+               }
+               else{
                 pagecode = 0;
                 pagelow = pageno-8;
                 pageup = pageno;
+               }
+
 		
-                console.log('f7');
               }
               else if(businesscategories.length == 0){
                 // pagelow = pageno;
                 // pageup = pageno;
                 // pagecode = 0;
 
-                console.log('f8');
                 res.redirect(301, process.env.BASEURL+'/404');                
               }
               else{
 		console.log('f8.1');
 		}
 
-              console.log('f9');
               let dataobj = {
                 urlforpagination, pagelow, pageup, pagecode, pageno
               }
 
-              console.log('f10');
               businesscategories.forEach((element, index) => {
                 businesscategories[index].slug = element._id.trim().split(' ').join('-').toLowerCase();
               });
 
-              console.log('11');
               // res.json(businesscategories);
               res.render('categories', { title, keywords, description, sitename, pageurl, imgurl, dataobj, businesscategories, robotcheck });
         })
         .catch(function (error) {
          
-         console.log('12');
          console.log(error);
         // res.json({error:error});
          res.redirect(301, process.env.BASEURL+'/404');
@@ -254,9 +253,16 @@ router.get('/:location/:key/:pageno', function(req, res, next) {
               });
 
               if(businesslisting.length < 20 && businesslisting.length > 1){
-                pagecode = 0;
-                pagelow = pageno-8;
-                pageup = pageno;
+                if(pageno<9){
+                  pagecode = 0;
+                  pagelow = pageno-(pageno-1);
+                  pageup = pageno;
+                 }
+                 else{
+                  pagecode = 0;
+                  pagelow = pageno-8;
+                  pageup = pageno;
+                 }
               }
               else if(businesslisting.length == 0){
                 pagelow = pageno;
