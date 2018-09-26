@@ -45,7 +45,9 @@ router.get('/', function(req, res, next) {
   let sitename = "99 Nearme - Local Search Engine, Business Listing, Business Articles";
     
 });
-
+router.get('/index.html', function(req, res, next) {
+  res.redirect(301, process.env.BASEURL+'/');
+  });
 router.get('/sitemap.xml', function(req, res, next) {
   res.redirect(301, process.env.BASEURL+'/sitemaps/main.xml');
   });
