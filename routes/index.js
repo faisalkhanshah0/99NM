@@ -181,7 +181,7 @@ router.get('/articles', function(req, res, next) {
 //Routing for 404 Page Starts
 router.get('/404', function(req, res, next) {
   let title = "404 Page Not Found | 99 Nearme";
-  res.render('404', {title});
+  res.status(404).render('404', {title});
 });
 //Routing for 404 Page Ends
 
@@ -339,7 +339,7 @@ axios.get(uri3)
 //Routing for Rest pages goes to 404 starts
 router.get('*', function(req, res, next) {
   let title = "404 Page Not Found | 99 Nearme";
-  res.render('404', { title });
+  res.status(404).render('404', { title });
 });
 //Routing for Rest pages goes to 404 Ends
 module.exports = router;
