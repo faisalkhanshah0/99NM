@@ -28,14 +28,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.all(/.*/, function(req, res, next) {
-  var host = req.header("host");
-  if (host.match(/^www\..*/i)) {
-    next();
-  } else {
-    res.redirect(301, "http://www." + host);
-  }
-});
+// app.all(/.*/, function(req, res, next) {
+//   var host = req.header("host");
+//   if (host.match(/^www\..*/i)) {
+//     next();
+//   } else {
+//     res.redirect(301, "http://www." + host);
+//   }
+// });
 app.use(express.static(path.join(__dirname, 'public')));
 
 
