@@ -3,33 +3,34 @@
                 <div class="widget-title">
                   <h4>Advertisement</h4>
                 </div>
-                <img src="assets/img/img1.jpg" alt="">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- for99nearme -->
+                <ins class="adsbygoogle"
+                    style="display:inline-block;width:300px;height:600px"
+                    data-ad-client="ca-pub-1130279849698857"
+                    data-ad-slot="7751868605"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
               </div>
+              {{#if subcategories}}
               <div class="inner-box">
                 <div class="widget-title">
                   <h4>Related Categories</h4>
                 </div>
                 <div class="categories-list">
                     <ul>
+                      {{#each subcategories}}
                       <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
+                        <a href="{{url}}">
+                          <i class="fa fa-arrow-circle-right"></i>
+                          {{name}} 
+                          {{!-- <span class="category-counter"></span> --}}
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-desktop"></i>
-                          Electronics <span class="category-counter">(9)</span>
-                        </a>
-                      </li>
+                      {{/each}}
                     </ul>
                 </div>
               </div>
+              {{/if}}
             </aside>

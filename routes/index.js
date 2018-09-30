@@ -239,8 +239,23 @@ router.get('/:location/:key/:pageno', function(req, res, next) {
   }
   // console.log(cid);
   let uri4 = `${process.env.BASEURL}/api/listings/fetch/${location}/${key}/${pageno}`;
-      axios.get(uri4)
-        .then(function (response) {
+  let uri6 = `${process.env.BASEURL}/api/listings/fetchsubcategories/${key}/100`;
+  axios.all([
+    axios.get(uri4),
+    axios.get(uri6)
+  ]).then(axios.spread(function (response, subcategoriesresponse) {
+              
+              let subcategoriesarr = subcategoriesresponse.data;
+              let subcategories = [];
+              subcategoriesarr.forEach(element => {
+                let keyslug = element.trim().split(' ').join('-').toLowerCase();
+                let url = `/${location}/${keyslug}`;
+                let obj = {
+                  name:element,
+                  url
+                } 
+                subcategories.push(obj);               
+              });
               let businesslisting = response.data;
               let data = [];
               businesslisting.forEach((element, index) => {
@@ -278,9 +293,9 @@ router.get('/:location/:key/:pageno', function(req, res, next) {
               let dataobj = {
                 urlforpagination, pagelow, pageup, pagecode, pageno
               }
-              res.render('business-listing', {keywords, description, pageurl,imgurl,sitename,title,dataobj,robotcheck,searchstatement, data });
+              res.render('business-listing', {subcategories,keywords, description, pageurl,imgurl,sitename,title,dataobj,robotcheck,searchstatement, data });
 
-        })
+        }))
         .catch(function(error) {
           res.redirect(301, process.env.BASEURL+'/404');
         });

@@ -159,7 +159,7 @@ router.get('/listings/sitemapcategories/:pageno', auth, function(req, res, next)
 router.get('/listings/fetchsubcategories/:category/:count', auth, function(req, res, next) {
   let category = req.params.category.split('-').join(' ').trim();
   let count;
-  (req.params.count>50)?count=50:count=req.params.count;    
+  (req.params.count>100)?count=100:count=req.params.count;    
   mongo.then((db) => {
     return fetchsubcategories(db, category, count);
   }).then((docs) => {
@@ -172,7 +172,7 @@ router.get('/listings/fetchsubcategories/:category/:count', auth, function(req, 
     });
     let unique = [...new Set(arr)];
     let data;
-    (req.params.count>20)?data = unique.slice(0,25):data=unique.slice(0,10);
+    (req.params.count>20)?data = unique.slice(0,50):data=unique.slice(0,10);
     res.setHeader('Content-Type', 'application/json');
     res.status(200).send(data);
         
