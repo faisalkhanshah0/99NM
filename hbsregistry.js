@@ -33,36 +33,36 @@ hbs.registerHelper('forpagination', function(pagecode, pageno, url, from, to, in
     pageno = parseInt(pageno);
     if(pageno == 1){
         accum += `<li class="page-item disabled">
-                    <a class="page-link" tabindex="-1">Previous</a>
+                    <a class="page-link" rel="nofollow" tabindex="-1">Previous</a>
                 </li>`;
     }
     else{
         let prev = pageno-1;
         accum += `<li class="page-item">
-                    <a class="page-link" href="${url}${prev}" tabindex="-1">Previous</a>
+                    <a class="page-link" rel="prev" href="${url}${prev}" tabindex="-1">Previous</a>
                 </li>`;
     }
     for(var i = from; i <= to; i += incr)
         {
             if(i == pageno){
                accum += `<li class="page-item active">
-                <a class="page-link" href="${url}${block.fn(i).trim()}">${block.fn(i).trim()}<span class="sr-only">(current)</span></a></li>`;
+                <a class="page-link" rel="nofollow" href="${url}${block.fn(i).trim()}">${block.fn(i).trim()}<span class="sr-only">(current)</span></a></li>`;
             }
             else{
-                accum += `<li class="page-item"><a class="page-link" href="${url}${block.fn(i).trim()}">${block.fn(i).trim()}</a></li>`;
+                accum += `<li class="page-item"><a class="page-link" rel="nofollow" href="${url}${block.fn(i).trim()}">${block.fn(i).trim()}</a></li>`;
             }
             
             
         }
     if(pagecode == 0){
         accum += `<li class="page-item disabled">
-                    <a class="page-link">Next</a>
+                    <a class="page-link" rel="nofollow">Next</a>
                 </li>`;
     }
     else{
         let next = pageno+1;
         accum += `<li class="page-item">
-                    <a class="page-link" href="${url}${next}">Next</a>
+                    <a class="page-link" rel="next" href="${url}${next}">Next</a>
                 </li>`;
     }    
     return new hbs.SafeString(accum);
