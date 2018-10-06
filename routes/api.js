@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const requestIp = require('request-ip');
+const publicIp = require('public-ip');
+
 const { mongo } = require('.././server/mongo-connect'); 
 const { fetchone,fetch, sitemapcategories, categorycount, fetchrecords, count,sitemapurls, fetchcategories, fetchsubcategories } = require('.././server/find');
 const { contactquery, clientquery, submitad, getNextSequenceValue } = require('.././server/submit');
@@ -14,8 +15,11 @@ var auth = function (req, res, next) {
 //   res.send(req.connection.remoteAddress);
 //   // res.status(200).send('Not Authorized.');
 // }
-var clientIp = requestIp.getClientIp(req);
-var ip =req.connection.remoteAddress;
+
+publicIp.v4().then(ip => {
+  // console.log(ip);
+  var clientIp = ip;
+  var ip =req.connection.remoteAddress;
 
 var xheader = req.headers['x-forwarded-for'];
 
@@ -28,6 +32,8 @@ var ref = req.headers.referer;
 console.log({name: 'test', clientIp, ip, xheader, socketadd, socketip, ref});
 
 next();
+});
+
 }
 
 // Post an ad submission pipe
