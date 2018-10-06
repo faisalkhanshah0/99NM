@@ -159,7 +159,7 @@
         openinghours: $('#inputopeninghours').val().trim(),
         websiteaddress: $('#inputwebsite').val().trim(),
         slug: $('#inputbusinessname').val().trim().split(' ').join('-'),
-        url: $('#inputcity').val().trim()+'/'+$('#inputbusinessname').val().trim().split(' ').join('-'),
+        url: $('#inputcity').val().trim().toLowerCase()+'/'+$('#inputarea').val().trim().toLowerCase().split(' ').join('-')+$('#inputbusinessname').val().trim().toLowerCase().split(' ').join('-'),
         phonenumber: $('#inputbusinessmobile').val().trim(),
         businessdescription: $('#inputbusinessdescription').val().trim(),
         businessprofile: $('#inputbusinessprofile').val().trim(),
