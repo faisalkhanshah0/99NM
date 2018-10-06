@@ -21,6 +21,7 @@ publicIp.v4().then(ip => {
   var clientIp = ip;
   var ip =req.connection.remoteAddress;
 
+  var xip =req.headers['x-real-ip'];
 var xheader = req.headers['x-forwarded-for'];
 
 var socketadd = req.socket.remoteAddress;
@@ -29,7 +30,7 @@ var socketip = req.connection.socket ? req.connection.socket.remoteAddress : nul
 
 var ref = req.headers.referer;
 
-console.log({name: 'test', clientIp, ip, xheader, socketadd, socketip, ref});
+console.log({name: 'test2', xip,clientIp, ip, xheader, socketadd, socketip, ref});
 
 next();
 });
