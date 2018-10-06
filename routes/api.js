@@ -7,13 +7,26 @@ const { contactquery, clientquery, submitad, getNextSequenceValue } = require('.
 const {mailquery} = require('.././server/sendmail');
 
 var auth = function (req, res, next) {
-  if(req.connection.remoteAddress === process.env.IP || req.connection.remoteAddress === process.env.IP2 || req.connection.remoteAddress === process.env.IP3){
-    next();
-}
-else{
-  res.send(req.connection.remoteAddress);
-  // res.status(200).send('Not Authorized.');
-}
+//   if(req.connection.remoteAddress === process.env.IP || req.connection.remoteAddress === process.env.IP2 || req.connection.remoteAddress === process.env.IP3){
+//     next();
+// }
+// else{
+//   res.send(req.connection.remoteAddress);
+//   // res.status(200).send('Not Authorized.');
+// }
+var ip =req.connection.remoteAddress;
+
+var xheader = req.headers['x-forwarded-for'];
+
+var socketadd = req.socket.remoteAddress;
+
+var socketip = req.connection.socket ? req.connection.socket.remoteAddress : null;
+
+var ref = req.headers.referer;
+
+console.log({name: 'test', ip, xheader, socketadd, socketip, ref});
+
+next();
 }
 
 // Post an ad submission pipe
