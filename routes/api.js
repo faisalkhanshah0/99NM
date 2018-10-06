@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const publicIp = require('public-ip');
 
 const { mongo } = require('.././server/mongo-connect'); 
 const { fetchone,fetch, sitemapcategories, categorycount, fetchrecords, count,sitemapurls, fetchcategories, fetchsubcategories } = require('.././server/find');
@@ -8,33 +7,13 @@ const { contactquery, clientquery, submitad, getNextSequenceValue } = require('.
 const {mailquery} = require('.././server/sendmail');
 
 var auth = function (req, res, next) {
-//   if(req.connection.remoteAddress === process.env.IP || req.connection.remoteAddress === process.env.IP2 || req.connection.remoteAddress === process.env.IP3){
-//     next();
-// }
-// else{
-//   res.send(req.connection.remoteAddress);
-//   // res.status(200).send('Not Authorized.');
-// }
-
-publicIp.v4().then(ip => {
-  // console.log(ip);
-  var clientIp = ip;
-  var ip =req.connection.remoteAddress;
-
-  var xip =req.headers['x-real-ip'];
-var xheader = req.headers['x-forwarded-for'];
-
-var socketadd = req.socket.remoteAddress;
-
-var socketip = req.connection.socket ? req.connection.socket.remoteAddress : null;
-
-var ref = req.headers.referer;
-
-console.log({name: 'test2', xip,clientIp, ip, xheader, socketadd, socketip, ref});
-
-next();
-});
-
+  if(req.connection.remoteAddress === process.env.IP || req.connection.remoteAddress === process.env.IP2 || req.connection.remoteAddress === process.env.IP3){
+    next();
+}
+else{
+  res.send(req.connection.remoteAddress);
+  // res.status(200).send('Not Authorized.');
+}
 }
 
 // Post an ad submission pipe
