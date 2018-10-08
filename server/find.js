@@ -45,7 +45,8 @@ var fetch = (db) => {
   var sitemapurls = (db,pageno) => {
     return new Promise((resolve, reject) => {
         let skipcount = (parseInt(pageno)-1)*1000;
-        db.collection(process.env.MONGO_COLLECTION_NAME).find({},{url:1, cid:1, _id:0}).sort({cid:1}).limit(1000).skip(skipcount).toArray().then((docs) => {
+        // removed sort({cid:1})
+        db.collection(process.env.MONGO_COLLECTION_NAME).find({},{url:1, cid:1, _id:0}).limit(1000).skip(skipcount).toArray().then((docs) => {
             resolve(docs);
             
         }).catch((e) => {
