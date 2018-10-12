@@ -68,8 +68,8 @@
                               <input type="text" maxlength="150" class="form-control" required id="inputaddress" placeholder="1234 Main St, Near Abc Park">
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                              <label for="inputarea">Area / Locality Name</label>
-                              <input type="text"  maxlength="30" class="form-control" id="inputarea" placeholder="Asif Ali Road">
+                              <label for="inputarea">Area / Locality Name *</label>
+                              <input type="text"  maxlength="30" class="form-control" required id="inputarea" placeholder="Asif Ali Road">
                             </div>
                           </div>
                           <div class="form-row mb10">
@@ -165,7 +165,7 @@
         businessprofile: $('#inputbusinessprofile').val().trim(),
 
         };
-        if(dataobj.concernperson && dataobj.email && dataobj.companyname && dataobj.category && dataobj.address && dataobj.city && dataobj.phonenumber && dataobj.businessprofile && dataobj.businessprofile!=0){
+        if(dataobj.concernperson && dataobj.email && dataobj.companyname && dataobj.category && dataobj.address && dataobj.city && dataobj.phonenumber && dataobj.businessprofile && dataobj.area && dataobj.businessprofile!=0){
              
           $.post("/api/submit/ad", dataobj, function(result){
               if(result.result == 1)
