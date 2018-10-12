@@ -70,8 +70,7 @@ axios.get(uri2)
         for(let i=0;i<countbusiness.length;i++){
             let exacturl = `${process.env.BASEURL}/${countbusiness[i].url}/${countbusiness[i].cid}`
             xmlgen[0].urlset.push({ url: [{
-              loc: exacturl //{ _cdata: exacturl}
-            },{changefreq: 'weekly'}, {priority: '0.9'}] });
+              loc:{ _cdata: exacturl}},{changefreq: 'weekly'}, {priority: '0.9'}] });
 
         }
         
