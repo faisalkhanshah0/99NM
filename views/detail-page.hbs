@@ -132,7 +132,13 @@
                           </div>
                           <div class="col-md-12 col-sm-12 col-xs-12">
                           <h3 class="extra-subheading showbold">Description</h3>
-                          <p>{{company}} is located in {{businessdetail.city}}. {{company}} in {{businessdetail.city}}. Listed with category {{businessdetail.category}}, postal address, contact number, opening hours, logo, postal code, email &amp; website address. Find contact details &amp; address of {{company}} in {{businessdetail.city}}.</p>
+                          <p>
+                          {{#if businessdetail.businessdescription}}
+                          {{businessdetail.businessdescription}}
+                          {{/if}}
+                          </p>
+                          
+                          <p class="mt10 mb10">{{company}} is located in {{businessdetail.city}}. {{company}} in {{businessdetail.city}}. Listed with category {{businessdetail.category}}, postal address, contact number, opening hours, logo, postal code, email &amp; website address. Find contact details &amp; address of {{company}} in {{businessdetail.city}}.</p>
 
                           <p class="mt10 mb10"></p>
                           <p>Our mailing address is - {{businessdetail.companyaddress}} and postal code is - {{businessdetail.pincode}}</p>
