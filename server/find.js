@@ -100,7 +100,7 @@ var fetch = (db) => {
                 resolve(docs);
                 
             }).catch((e) => {
-                reject('fetching unsuccessfull', e);
+                reject('fetching unsuccessfull', e); 
             });     
         }
         else{
