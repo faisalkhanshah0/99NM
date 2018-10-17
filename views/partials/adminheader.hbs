@@ -1,0 +1,34 @@
+<!-- Header Section Start -->
+    <div class="header">    
+      <nav class="navbar navbar-default main-navigation" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <!-- Stat Toggle Nav Link For Mobiles -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- End Toggle Nav Link For Mobiles -->
+            <a class="navbar-brand logo" href="/"><img src="assets/images/99nearme.png" alt="99nearme logo" title="99nearme - local search engine, business listing, business articles"></a>
+          </div>
+          <!-- brand and toggle menu for mobile End -->
+
+          <!-- Navbar Start -->
+          <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-right">
+              {{#if login}}
+              {{!-- <li><a rel="nofollow" href="/articles"><i class="lnr lnr-book"></i> Dummy</a></li> --}}
+              {{else}}
+              <li><a href="/admin/logout"><i class="lnr lnr-exit"></i> Logout</a></li>
+              <li><a href="#"><i class="lnr lnr-user"></i> Hi Admin</a></li>
+                
+              {{/if}}
+            </ul>
+          </div>
+          <!-- Navbar End -->
+        </div>
+      </nav>
+    </div>
+    <!-- Header Section End -->

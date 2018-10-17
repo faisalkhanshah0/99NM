@@ -1,0 +1,81 @@
+{{> adminheader}}
+      <section>
+         <div class="container">
+            <div class="row justify-content-center">
+                <h3 class="section-title mb10 ml10 showbold">Login</h3>
+                <div class="col-md-4 offset-md-4 col-sm-12 col-xs-12 well">
+                                                  
+                          <div id="errorbox" class="alert alert-danger alert-dismissible fade in">
+                            <a href="#" class="close messageboxclose" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error :</strong><p id="error"></p>
+                          </div>
+                        <form action="/login" onsubmit="return validatelogin()" id="adminloginform" method="POST">
+
+                         <div class="form-row">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                              <label for="inputusername">Username *</label>
+                              <input type="text" class="form-control" minlength="7" maxlength="25" required id="inputusername" placeholder="Username">
+                            </div>
+                          </div> 
+                          
+                          <div class="form-row">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                              <label for="inputpassword">Password *</label>
+                              <input type="password" maxlength="25" minlength="4" class="form-control" required id="inputpassword" placeholder="Password">
+                            </div>
+                          </div>
+
+                          <div class="form-row mt10 mb10">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <p>Note : * denotes Mandatory fields.</p>
+                            </div>
+                          </div>
+                          <div class="form-row mt10 mb10">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                              <div class="g-recaptcha" data-sitekey="6LcMbnAUAAAAALj2K6R7reHUXl7CbMuU2M64lceI"></div>
+                            </div>
+                          </div>
+                          <div class="form-row mt10 mb10">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                              <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                          </div>
+                          
+                        </form>
+                </div>
+            </div>
+         </div>
+        </section>    
+      <script>
+      $('#errorbox').hide();
+      function validatelogin(){
+        let dataobj = {
+        username: $('#inputusername').val().trim(),
+        password: $('#inputpassword').val().trim(),
+        };
+        if(dataobj.username && dataobj.password){
+
+          $.post("/api/admin/login", dataobj, function(result){
+              console.log(result);
+              if(result.result.count == 1)
+              {
+                  window.location.href = "/admin/dashboard";
+              }
+              else{
+                $('#errorbox').show();
+                $('#error').html('Something went wrong. please check your values and try it again. Thanks 99nearme');
+                
+              }
+          });
+          return false;
+        }
+        else{
+          $('#errorbox').show();
+          $('#error').html('Something went wrong. please check your values and try it again. Thanks 99nearme');
+          return false;
+        }
+
+        
+      }
+    </script>
+    {{> adminfooter}}

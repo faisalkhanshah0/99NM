@@ -96,7 +96,7 @@ var fetch = (db) => {
         let searchkey1 = keyarr.join(' ').trim();
         let searchkey = searchkey1.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         if(location == 'best'){
-            db.collection(process.env.MONGO_COLLECTION_NAME).find({category:{$regex: searchkey, $options: 'i'}}, {category:1, companyname:1, url:1, cid:1, _id:0}).sort({cid:1}).skip(skipcount).limit(20).toArray().then((docs) => {
+            db.collection(process.env.MONGO_COLLECTION_NAME).find({ $or: [{category:{$regex: searchkey, $options: 'i'}},{companyname:{$regex: searchkey, $options: 'i'}}]}, {category:1, companyname:1, url:1, cid:1, _id:0}).sort({cid:1}).skip(skipcount).limit(20).toArray().then((docs) => {
                 resolve(docs);
                 
             }).catch((e) => {
@@ -106,7 +106,7 @@ var fetch = (db) => {
         else{
             let locarr = location.split('-');
             let searchlocation = locarr.join(' ').trim();
-            db.collection(process.env.MONGO_COLLECTION_NAME).find({category:{$regex: searchkey, $options: 'i'}, city:{$regex: searchlocation, $options: 'i'}}, {category:1, companyname:1, url:1, cid:1, _id:0}).sort({cid:1}).skip(skipcount).limit(20).toArray().then((docs) => {
+            db.collection(process.env.MONGO_COLLECTION_NAME).find({ $or : [{category:{$regex: searchkey, $options: 'i'}, city:{$regex: searchlocation, $options: 'i'}}, {companyname:{$regex: searchkey, $options: 'i'}, city:{$regex: searchlocation, $options: 'i'}}]}, {category:1, companyname:1, url:1, cid:1, _id:0}).sort({cid:1}).skip(skipcount).limit(20).toArray().then((docs) => {
                 resolve(docs);
                 
             }).catch((e) => {

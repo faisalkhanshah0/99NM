@@ -4,6 +4,7 @@ var router = express.Router();
 const { mongo } = require('.././server/mongo-connect'); 
 const { fetchone,fetch, sitemapcategories, categorycount, fetchrecords, count,sitemapurls, fetchcategories, fetchsubcategories } = require('.././server/find');
 const { contactquery, clientquery, submitad, getNextSequenceValue } = require('.././server/submit');
+const { verifyadmin, getadsqueue } = require('.././server/admin');
 const {mailquery} = require('.././server/sendmail');
 
 var auth = function (req, res, next) {
@@ -212,6 +213,36 @@ router.get('/listings/sitemapurls/:pageno', auth, function(req, res, next) {
         
      }).catch((e) => {
       res.status(200).send('fetching error : ',e);
+  });
+  
+});
+
+
+//Admin routes
+router.post('/admin/login', auth, function(req, res, next) {
+  let params = req.body; 
+  mongo.then((db) => {
+    return verifyadmin(db, params);
+  }).then((docs) => {
+    req.session.adminuser = docs.user;
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).send({result: docs});
+        
+     }).catch((e) => {
+      res.status(200).send(e);
+  });
+  
+});
+//Admin Listing Routes (Listing to be approved / declined)
+router.get('/admin/getadsqueue', auth, function(req, res, next) {
+  mongo.then((db) => {
+    return getadsqueue(db);
+  }).then((docs) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).send({result: docs});
+        
+     }).catch((e) => {
+      res.status(200).send(e);
   });
   
 });

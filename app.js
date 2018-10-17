@@ -3,12 +3,14 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var logger = require('morgan');
 const helmet = require('helmet')
 var compression = require('compression')
 
 
 var indexRouter = require('./routes/index');
+var adminRouter = require('./routes/admin');
 var apisRouter = require('./routes/api');
 var sitemapRouter = require('./routes/sitemap');
 
@@ -28,6 +30,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret: process.env.SESSION_SECRET}));
 if(process.env.APP_ENVIRONMENT === 'prod') {
   app.all(/.*/, function(req, res, next) {
     var host = req.header("host");
@@ -43,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/sitemaps', sitemapRouter);
+app.use('/admin', adminRouter);
 app.use('/api', apisRouter);
 app.use('/', indexRouter);
 

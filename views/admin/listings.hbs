@@ -1,0 +1,51 @@
+{{> adminheader}}
+
+      <section>
+         <div class="container">
+            <div class="row">
+                <h3 class="section-title mb10 ml10 showbold">Dashboard</h3>
+            </div> 
+            <div class="row">
+                {{> adminmenubar}}
+                <div class="col-md-10 col-sm-12 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12 well">
+                                
+                            {{!-- <div class="row">
+                                <div class="col-md-1 col-sm-1 col-xs-1">Cid</div>
+                                <div class="col-md-9 col-sm-9 col-xs-9">Details</div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">Action</div>
+                            </div> --}}
+                            {{#each data}}
+                            <div id="div-{{cid}}">
+                            <div class="row mt10 mb10">
+                                <div class="col-md-2 col-sm-12 col-xs-12">CID: {{cid}}</div>
+                                <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                        <textarea id="input-{{cid}}" class="form-control" rows="10">{{value}}</textarea>
+                                </div>
+                                <div class="col-md-2 col-sm-12 col-xs-12">
+                                    <a class="btn btn-success" onclick="updatelisting({{cid}})"><span class="fa fa-check-circle"></span></a>
+                                    <a class="btn btn-danger" onclick="deletelisting({{cid}})"><span class="fa fa-times-circle"></span></a>
+                                </div>
+                            </div>
+                            <hr>
+                            </div>
+                            {{/each}}
+
+                    </div>
+                </div>
+
+            </div>
+         </div>
+        </section>    
+        <script>
+            function updatelisting(cid){
+                let data = JSON.parse($('#input-'+cid).val());
+                
+                console.log(data);
+            }
+            function deletelisting(cid){
+                console.log(cid);
+            }
+        </script>
+     
+    {{> adminfooter}}
