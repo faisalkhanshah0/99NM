@@ -24,9 +24,11 @@ var fetch = (db) => {
   var count = (db) => {
     return new Promise((resolve, reject) => {
         db.collection(process.env.MONGO_COLLECTION_NAME).find().count().then((docs) => {
+            console.log('query successful :',docs);
             resolve(docs);
             
         }).catch((e) => {
+            console.log(e);
             reject('fetching unsuccessfull', e);
         });
     });

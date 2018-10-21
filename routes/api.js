@@ -97,7 +97,7 @@ router.get('/listings/count', auth, function(req, res, next) {
   mongo.then((db) => {
     return count(db);
   }).then((docs) => {
-   
+    console.log('test2'+docs);
     res.setHeader('Content-Type', 'application/json');
     res.status(200).send({result: docs});
         

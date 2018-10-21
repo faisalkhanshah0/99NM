@@ -31,16 +31,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({secret: process.env.SESSION_SECRET}));
-// if(process.env.APP_ENVIRONMENT === 'prod') {
-//   app.all(/.*/, function(req, res, next) {
-//     var host = req.header("host");
-//     if (host.match(/^www\..*/i)) {
-//       next();
-//     } else {
-//       res.redirect(301, "http://www." + host);
-//     }
-//   });  
-// }
+if(process.env.APP_ENVIRONMENT === 'prod') {
+  app.all(/.*/, function(req, res, next) {
+    var host = req.header("host");
+    if (host.match(/^www\..*/i)) {
+      next();
+    } else {
+      res.redirect(301, "http://www." + host);
+    }
+  });  
+}
 
 app.use(express.static(path.join(__dirname, 'public')));
 
