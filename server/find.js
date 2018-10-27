@@ -71,6 +71,7 @@ var fetch = (db) => {
     return new Promise((resolve, reject) => {
         let skipcount = (parseInt(pageno)-1)*250;
         db.collection(process.env.MONGO_COLLECTION_NAME).aggregate([{$group:{_id:'$category', count: { $sum: 1 }}},{$sort:{"count":-1}}, {$skip:skipcount}, {$limit:250}]).toArray().then((docs) => {
+            console.log('test',docs);
             resolve(docs);
             
         }).catch((e) => {
