@@ -30,7 +30,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({secret: process.env.SESSION_SECRET}));
+
+app.use(session({secret: process.env.SESSION_SECRET,resave: true,saveUninitialized: true}));
+
 if(process.env.APP_ENVIRONMENT === 'prod') {
   app.all(/.*/, function(req, res, next) {
     var host = req.header("host");
