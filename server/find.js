@@ -18,30 +18,33 @@ var fetch = (db) => {
             resolve(docs[0]);
             
         }).catch((e) => {
-            reject('fetching unsuccessfull', e);
+            // reject('fetching unsuccessfull', e);
+            resolve(e);
         });
     });
   }
   var count = (db) => {
     return new Promise((resolve, reject) => {
         db.collection(process.env.MONGO_COLLECTION_NAME).find().count().then((docs) => {
-            console.log('query successful :',docs);
+            // console.log('query successful :',docs);
             resolve(docs);
             
         }).catch((e) => {
-            console.log(e);
-            reject('fetching unsuccessfull', e);
+            // console.log(e);
+            resolve(e);
+            // reject('fetching unsuccessfull', e);
         });
     });
   }
   var categorycount = (db) => {
     return new Promise((resolve, reject) => {
         db.collection(process.env.MONGO_COLLECTION_NAME).distinct('category').length.then((docs) => {
-            console.log(docs);
+            // console.log(docs);
             resolve(docs);
             
         }).catch((e) => {
-            reject('fetching unsuccessfull', e);
+            // reject('fetching unsuccessfull', e);
+            resolve(e);
         });
     });
   }
@@ -53,7 +56,8 @@ var fetch = (db) => {
             resolve(docs);
             
         }).catch((e) => {
-            reject('fetching unsuccessfull', e);
+            // reject('fetching unsuccessfull', e);
+            resolve(e);
         });
     });
   }
@@ -64,7 +68,8 @@ var fetch = (db) => {
             resolve(docs);
             
         }).catch((e) => {
-            reject('fetching unsuccessfull', e);
+            // reject('fetching unsuccessfull', e);
+            resolve(e);
         });
     });
   }
@@ -76,7 +81,8 @@ var fetch = (db) => {
             resolve(docs);
             
         }).catch((e) => {
-            reject('fetching unsuccessfull', e);
+            // reject('fetching unsuccessfull', e);
+            resolve(e);
         });
     });
   }
@@ -89,7 +95,8 @@ var fetch = (db) => {
             resolve(docs);
             
         }).catch((e) => {
-            reject('fetching unsuccessfull', e);
+            // reject('fetching unsuccessfull', e);
+            resolve(e);
         });
     });
   }
@@ -104,7 +111,8 @@ var fetch = (db) => {
                 resolve(docs);
                 
             }).catch((e) => {
-                reject('fetching unsuccessfull', e); 
+                // reject('fetching unsuccessfull', e);
+                resolve(e); 
             });     
         }
         else{
@@ -114,7 +122,8 @@ var fetch = (db) => {
                 resolve(docs);
                 
             }).catch((e) => {
-                reject('fetching unsuccessfull', e);
+                // reject('fetching unsuccessfull', e);
+                resolve(e);
             });
         }
 
