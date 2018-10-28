@@ -14,8 +14,8 @@ var auth = function (req, res, next) {
 }
 else{
   console.log('no-'+req.connection.remoteAddress);
-    next();
-  // res.send(req.connection.remoteAddress);
+    // next();
+  res.status(200).send(req.connection.remoteAddress);
   // res.status(200).send('Not Authorized.');
 }
 }
@@ -263,20 +263,6 @@ router.get('/test', auth, function(req, res, next) {
   .catch((e) => {
       res.status(200).send('fetching error : ',e);
   });
-
-
-  // mongo.then((db) => {
-  //   return count(db);
-  // })
-  // .then((docs) => {
-  //   console.log('test2'+docs);
-  //   res.setHeader('Content-Type', 'application/json');
-  //   res.status(200).send({result: docs});
-        
-  // })
-  // .catch((e) => {
-  //     res.status(200).send('fetching error : ',e);
-  // });
   
 });
 module.exports = router;
