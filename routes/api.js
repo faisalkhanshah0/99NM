@@ -9,10 +9,13 @@ const {mailquery} = require('.././server/sendmail');
 
 var auth = function (req, res, next) {
   if(req.connection.remoteAddress === process.env.IP || req.connection.remoteAddress === process.env.IP2 || req.connection.remoteAddress === process.env.IP3){
+    console.log('yes-'+req.connection.remoteAddress);
     next();
 }
 else{
-  res.send(req.connection.remoteAddress);
+  console.log('no-'+req.connection.remoteAddress);
+    next();
+  // res.send(req.connection.remoteAddress);
   // res.status(200).send('Not Authorized.');
 }
 }
