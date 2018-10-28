@@ -249,4 +249,22 @@ router.get('/admin/getadsqueue', auth, function(req, res, next) {
   });
   
 });
+
+router.get('/test', auth, function(req, res, next) {
+    
+  res.status(200).send({status:1});
+  // mongo.then((db) => {
+  //   return count(db);
+  // })
+  // .then((docs) => {
+  //   console.log('test2'+docs);
+  //   res.setHeader('Content-Type', 'application/json');
+  //   res.status(200).send({result: docs});
+        
+  // })
+  // .catch((e) => {
+  //     res.status(200).send('fetching error : ',e);
+  // });
+  
+});
 module.exports = router;
