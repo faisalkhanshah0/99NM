@@ -254,7 +254,11 @@ router.get('/test', auth, function(req, res, next) {
   
   
     mongo.then((db) => {
-    res.status(200).send({status:2});
+      return fetch(db);
+  })
+  .then((docs) => {
+    res.status(200).send({result: docs});
+        
   })
   .catch((e) => {
       res.status(200).send('fetching error : ',e);

@@ -4,7 +4,8 @@ var fetch = (db) => {
             resolve(docs);
             
         }).catch((e) => {
-            reject('fetching unsuccessfull', e);
+            resolve(e);
+            // reject('fetching unsuccessfull', e);
         });
     });
   }
