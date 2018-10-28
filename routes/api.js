@@ -251,8 +251,16 @@ router.get('/admin/getadsqueue', auth, function(req, res, next) {
 });
 
 router.get('/test', auth, function(req, res, next) {
-    
-  res.status(200).send({status:1});
+  
+  
+    mongo.then((db) => {
+    res.status(200).send({status:2});
+  })
+  .catch((e) => {
+      res.status(200).send('fetching error : ',e);
+  });
+
+
   // mongo.then((db) => {
   //   return count(db);
   // })
