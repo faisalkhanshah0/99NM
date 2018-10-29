@@ -9,17 +9,17 @@ const {mailquery} = require('.././server/sendmail');
 
 var auth = function (req, res, next) {
   if(req.connection.remoteAddress === process.env.IP || req.connection.remoteAddress === process.env.IP2 || req.connection.remoteAddress === process.env.IP3){
-    let ip = req.headers['x-forwarded-for'] || 
-     req.connection.remoteAddress || 
-     req.socket.remoteAddress ||
+    let ip = req.headers['x-forwarded-for'] +'||'+ 
+     req.connection.remoteAddress +'||'+
+     req.socket.remoteAddress +'||'+
      (req.connection.socket ? req.connection.socket.remoteAddress : null);
     console.log('yes',ip);
      next();
 }
 else{
-  let ip = req.headers['x-forwarded-for'] || 
-     req.connection.remoteAddress || 
-     req.socket.remoteAddress ||
+  let ip = req.headers['x-forwarded-for'] +'||'+ 
+     req.connection.remoteAddress +'||'+
+     req.socket.remoteAddress +'||'+
      (req.connection.socket ? req.connection.socket.remoteAddress : null);
     
   console.log('yes',ip);
