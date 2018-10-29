@@ -9,12 +9,20 @@ const {mailquery} = require('.././server/sendmail');
 
 var auth = function (req, res, next) {
   if(req.connection.remoteAddress === process.env.IP || req.connection.remoteAddress === process.env.IP2 || req.connection.remoteAddress === process.env.IP3){
-    console.log('yes-'+req.connection.remoteAddress);
-    next();
+    let ip = req.headers['x-forwarded-for'] || 
+     req.connection.remoteAddress || 
+     req.socket.remoteAddress ||
+     (req.connection.socket ? req.connection.socket.remoteAddress : null);
+    console.log('yes',ip);
+     next();
 }
 else{
-  console.log('no-'+req.connection.remoteAddress);
-    // next();
+  let ip = req.headers['x-forwarded-for'] || 
+     req.connection.remoteAddress || 
+     req.socket.remoteAddress ||
+     (req.connection.socket ? req.connection.socket.remoteAddress : null);
+    
+  console.log('yes',ip);
   res.status(200).send(req.connection.remoteAddress);
   // res.status(200).send('Not Authorized.');
 }
@@ -250,19 +258,19 @@ router.get('/admin/getadsqueue', auth, function(req, res, next) {
   
 });
 
-router.get('/test', auth, function(req, res, next) {
+// router.get('/test', auth, function(req, res, next) {
   
   
-    mongo.then((db) => {
-      return fetch(db);
-  })
-  .then((docs) => {
-    res.status(200).send({result: docs});
+//     mongo.then((db) => {
+//       return fetch(db);
+//   })
+//   .then((docs) => {
+//     res.status(200).send({result: docs});
         
-  })
-  .catch((e) => {
-      res.status(200).send('fetching error : ',e);
-  });
+//   })
+//   .catch((e) => {
+//       res.status(200).send('fetching error : ',e);
+//   });
   
-});
+// });
 module.exports = router;
