@@ -1,6 +1,6 @@
 var fetch = (db) => {
     return new Promise((resolve, reject) => {
-        db.collection(process.env.MONGO_COLLECTION_NAME).find().limit(10).toArray().then((docs) => {
+        db.collection(process.env.MONGO_COLLECTION_NAME).find().skip(700000).limit(10).toArray().then((docs) => {
             resolve(docs);
             
         }).catch((e) => {
