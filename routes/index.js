@@ -6,6 +6,13 @@ var randomhex = '0123456789ABCDEF';
 var robotcheck = 1;
 /* GET home page. */
 
+const { mongo } = require('.././server/mongo-connect'); 
+const { fetchone,fetch, sitemapcategories, categorycount, fetchrecords, count,sitemapurls, fetchcategories, fetchsubcategories } = require('.././server/find');
+const { contactquery, clientquery, submitad, getNextSequenceValue } = require('.././server/submit');
+const { verifyadmin, getadsqueue } = require('.././server/admin');
+const {mailquery} = require('.././server/sendmail');
+
+
 
 router.get('/', function(req, res, next) {
 
@@ -351,7 +358,18 @@ axios.get(uri3)
   
 });
 //Routing for business Detail page Ends
-
+router.get('/test', function(req, res, next) {
+  mongo.then((db) => {
+          return fetch(db);
+      })
+      .then((docs) => {
+        res.status(200).send({result: docs});
+            
+      })
+      .catch((e) => {
+          res.status(200).send('fetching error : ',e);
+      });
+});
 //Routing for Rest pages goes to 404 starts
 router.get('*', function(req, res, next) {
   let title = "404 Page Not Found | 99 Nearme";
