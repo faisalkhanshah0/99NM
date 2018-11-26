@@ -4,4 +4,4 @@ Disallow: /api/*
 Disallow: /admin/*
 Allow: /
 
-Sitemap: https://www.99nearme.com/sitemaps/main.xml
+Sitemap: https://www.99nearme.com/sitemaps/sitemap_index.xml
