@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-
 const { mongo } = require('.././server/mongo-connect'); 
 const { fetchone,fetch, sitemapcategories, categorycount, fetchrecords, count,sitemapurls, fetchcategories, fetchsubcategories } = require('.././server/find');
 const { contactquery, clientquery, submitad, getNextSequenceValue } = require('.././server/submit');

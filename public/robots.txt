@@ -4,4 +4,5 @@ Disallow: /api/*
 Disallow: /admin/*
 Allow: /
 
-Sitemap: https://www.99nearme.com/sitemaps/sitemap_index.xml
+Sitemap: https://www.99nearme.com/sitemaps/business_categories_index.xml
+Sitemap: https://www.99nearme.com/sitemaps/listings_index.xml
